@@ -4,186 +4,59 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Şehbal | Eğitim Bilgi Sistemi</title>
-    <!-- Modern Yazı Tipi -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Profesyonel İkonlar -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
         :root {
-            --primary-color: #1e3a8a; /* Koyu Lacivert */
-            --secondary-color: #3b82f6; /* Canlı Mavi */
+            /* Renkleri logodaki Koyu Yeşil ve Turkuaz ile uyumlu hale getirdim */
+            --primary-color: #0d4a2d; 
+            --secondary-color: #0b8793; 
             --bg-color: #f3f4f6;
             --text-color: #1f2937;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        body { background-color: var(--bg-color); color: var(--text-color); display: flex; flex-direction: column; min-height: 100vh; }
 
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
+        /* Üst Menü */
+        .navbar { background-color: white; padding: 10px 50px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 15px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 100; }
 
-        /* Yeni Üst Menü (Navbar) Tasarımı */
-        .navbar {
-            background-color: white;
-            padding: 15px 50px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
+        /* YENİ LOGO AYARI */
+        .site-logo { height: 65px; width: auto; cursor: pointer; transition: 0.3s; }
+        .site-logo:hover { transform: scale(1.02); }
 
-        /* Logo Alanı */
-        .logo {
-            font-size: 24px;
-            font-weight: 700;
-            color: var(--primary-color);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            cursor: pointer;
-        }
+        .nav-menu { display: flex; gap: 30px; }
+        .nav-menu a { text-decoration: none; color: #4b5563; font-weight: 500; font-size: 15px; transition: 0.3s; position: relative; }
+        .nav-menu a:hover { color: var(--secondary-color); }
+        .nav-menu a::after { content: ''; position: absolute; width: 0; height: 2px; bottom: -4px; left: 0; background-color: var(--secondary-color); transition: width 0.3s; }
+        .nav-menu a:hover::after { width: 100%; }
 
-        .logo i {
-            color: var(--secondary-color);
-            font-size: 28px;
-        }
-
-        /* Ortadaki Sekmeler */
-        .nav-menu {
-            display: flex;
-            gap: 30px;
-        }
-
-        .nav-menu a {
-            text-decoration: none;
-            color: #4b5563;
-            font-weight: 500;
-            font-size: 15px;
-            transition: 0.3s;
-            position: relative;
-        }
-
-        .nav-menu a:hover {
-            color: var(--secondary-color);
-        }
-
-        /* Aktif sayfanın altını çizme efekti */
-        .nav-menu a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -4px;
-            left: 0;
-            background-color: var(--secondary-color);
-            transition: width 0.3s;
-        }
-
-        .nav-menu a:hover::after {
-            width: 100%;
-        }
-
-        /* Sağ Köşedeki Giriş Kutucuğu */
-        .nav-login-btn {
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            padding: 10px 25px;
-            border-radius: 8px;
-            font-size: 15px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .nav-login-btn:hover {
-            background-color: #152a66;
-            box-shadow: 0 4px 10px rgba(30, 58, 138, 0.3);
-            transform: translateY(-2px);
-        }
+        .nav-login-btn { background-color: var(--primary-color); color: white; border: none; padding: 10px 25px; border-radius: 8px; font-size: 15px; font-weight: 600; cursor: pointer; transition: 0.3s; display: flex; align-items: center; gap: 8px; }
+        .nav-login-btn:hover { background-color: #08331e; box-shadow: 0 4px 10px rgba(13, 74, 45, 0.3); transform: translateY(-2px); }
 
         /* Ana İçerik */
-        .main-container {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 40px 20px;
-        }
+        .main-container { flex: 1; display: flex; justify-content: center; align-items: center; padding: 40px 20px; }
+        .login-wrapper { background: white; border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.08); display: flex; width: 100%; max-width: 900px; overflow: hidden; min-height: 500px; }
 
-        .login-wrapper {
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
-            display: flex;
-            width: 100%;
-            max-width: 900px;
-            overflow: hidden;
-            min-height: 500px;
-        }
-
-        .welcome-side {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            width: 50%;
-            color: white;
-            padding: 50px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-        }
-
+        .welcome-side { background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); width: 50%; color: white; padding: 50px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
         .welcome-side i { font-size: 80px; margin-bottom: 20px; opacity: 0.9; }
         .welcome-side h2 { font-size: 28px; margin-bottom: 15px; font-weight: 600; }
         .welcome-side p { font-size: 15px; opacity: 0.8; line-height: 1.6; }
 
-        .form-side {
-            width: 50%;
-            padding: 50px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            background: #ffffff;
-        }
-
+        .form-side { width: 50%; padding: 50px; display: flex; flex-direction: column; justify-content: center; background: #ffffff; }
         .panel-title { font-size: 22px; font-weight: 600; margin-bottom: 30px; color: var(--primary-color); text-align: center; }
+        
         .input-group { position: relative; margin-bottom: 25px; }
         .input-group i { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: #9ca3af; }
-        
-        .input-group input {
-            width: 100%; padding: 15px 15px 15px 45px; border: 1px solid #e5e7eb; border-radius: 10px;
-            font-size: 15px; transition: all 0.3s; outline: none; background-color: #f9fafb;
-        }
+        .input-group input { width: 100%; padding: 15px 15px 15px 45px; border: 1px solid #e5e7eb; border-radius: 10px; font-size: 15px; transition: all 0.3s; outline: none; background-color: #f9fafb; }
+        .input-group input:focus { border-color: var(--secondary-color); box-shadow: 0 0 0 4px rgba(11, 135, 147, 0.1); background-color: white; }
 
-        .input-group input:focus { border-color: var(--secondary-color); box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1); background-color: white; }
-
-        .btn {
-            width: 100%; padding: 15px; border: none; border-radius: 10px; font-size: 16px; font-weight: 600;
-            color: white; cursor: pointer; transition: all 0.3s; display: flex; justify-content: center; align-items: center; gap: 10px; margin-bottom: 15px;
-        }
-
+        .btn { width: 100%; padding: 15px; border: none; border-radius: 10px; font-size: 16px; font-weight: 600; color: white; cursor: pointer; transition: all 0.3s; display: flex; justify-content: center; align-items: center; gap: 10px; margin-bottom: 15px; }
         .btn-student { background-color: var(--secondary-color); }
-        .btn-student:hover { background-color: #2563eb; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(59, 130, 246, 0.3); }
-        
-        .btn-teacher { background-color: #10b981; }
-        .btn-teacher:hover { background-color: #059669; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(16, 185, 129, 0.3); }
+        .btn-student:hover { background-color: #096d77; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(11, 135, 147, 0.3); }
+        .btn-teacher { background-color: var(--primary-color); }
+        .btn-teacher:hover { background-color: #08331e; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(13, 74, 45, 0.3); }
 
         .back-link { text-align: center; display: block; margin-top: 15px; color: #6b7280; text-decoration: none; font-size: 14px; cursor: pointer; transition: 0.3s; }
         .back-link:hover { color: var(--primary-color); }
@@ -193,7 +66,6 @@
 
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* Mobil Uyumluluk */
         @media (max-width: 768px) {
             .navbar { flex-direction: column; gap: 15px; padding: 15px 20px; }
             .nav-menu { flex-wrap: wrap; justify-content: center; gap: 15px; }
@@ -206,14 +78,12 @@
 </head>
 <body>
 
-    <!-- YENİ EKLENEN ÜST MENÜ -->
     <nav class="navbar">
-        <!-- İleride resimli logo eklemek istersen <i...> kısmını silip <img src="logo.png"> yazacağız -->
-        <div class="logo">
-            <i class="fa-solid fa-graduation-cap"></i> Şehbal
+        <!-- Logonun Eklendiği Kısım -->
+        <div class="logo-container">
+            <img src="326305349_728971212082418_2867891597224688947_n.png" alt="Şehbal Logo" class="site-logo">
         </div>
         
-        <!-- Sekmeler -->
         <div class="nav-menu">
             <a href="#" style="color: var(--secondary-color); font-weight: bold;">Ana Sayfa</a>
             <a href="#">Hakkımızda</a>
@@ -221,7 +91,6 @@
             <a href="#">Dükkan</a>
         </div>
 
-        <!-- Sağ Köşe Giriş Butonu -->
         <div>
             <button class="nav-login-btn" onclick="showPanel('selection')">
                 <i class="fa-solid fa-right-to-bracket"></i> Giriş
@@ -229,7 +98,6 @@
         </div>
     </nav>
 
-    <!-- Ana İçerik -->
     <div class="main-container">
         <div class="login-wrapper">
             
@@ -256,34 +124,28 @@
 
                 <div id="student-login" class="login-section">
                     <h3 class="panel-title">Öğrenci Paneli</h3>
-                    
                     <div class="input-group">
                         <i class="fa-solid fa-id-card"></i>
                         <input type="text" placeholder="Öğrenci Numarası">
                     </div>
-                    
                     <div class="input-group">
                         <i class="fa-solid fa-lock"></i>
                         <input type="password" placeholder="Şifre">
                     </div>
-
                     <button class="btn btn-student" onclick="alert('Öğrenci veritabanı yakında bağlanacak!')">Giriş Yap</button>
                     <a class="back-link" onclick="showPanel('selection')"><i class="fa-solid fa-arrow-left"></i> Geri Dön</a>
                 </div>
 
                 <div id="teacher-login" class="login-section">
                     <h3 class="panel-title">Öğretmen Paneli</h3>
-                    
                     <div class="input-group">
                         <i class="fa-solid fa-envelope"></i>
                         <input type="text" placeholder="E-posta Adresi veya T.C.">
                     </div>
-                    
                     <div class="input-group">
                         <i class="fa-solid fa-lock"></i>
                         <input type="password" placeholder="Şifre">
                     </div>
-
                     <button class="btn btn-teacher" onclick="alert('Öğretmen veritabanı yakında bağlanacak!')">Giriş Yap</button>
                     <a class="back-link" onclick="showPanel('selection')"><i class="fa-solid fa-arrow-left"></i> Geri Dön</a>
                 </div>
@@ -310,4 +172,5 @@
 
 </body>
 </html>
+
 
