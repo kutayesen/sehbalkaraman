@@ -10,19 +10,18 @@
         :root { --primary-color: #0d4a2d; --secondary-color: #0b8793; --bg-color: #f3f4f6; }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; scroll-behavior: smooth; }
         
-        /* NAVBAR - SABİT VE SAĞLAM */
-        .navbar { background: white; padding: 15px 50px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 20px rgba(0,0,0,0.08); position: sticky; top: 0; z-index: 1000; }
-        
+        /* NAVBAR - IŞIKLI VE GÖLGELİ */
+        .navbar { background: white; padding: 15px 50px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 20px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 1000; }
         .logo-link { text-decoration: none; display: flex; align-items: center; }
         .site-logo { height: 75px; transition: 0.3s; }
         .site-logo:hover { transform: scale(1.05); }
-        
-        .nav-menu { display: flex; gap: 25px; align-items: center; }
-        .nav-menu a { text-decoration: none; color: #4b5563; font-weight: 600; padding: 10px 15px; border-radius: 8px; transition: 0.4s; position: relative; }
+        .nav-menu { display: flex; gap: 10px; align-items: center; }
+        .nav-menu a { text-decoration: none; color: #4b5563; font-weight: 600; padding: 10px 20px; border-radius: 8px; transition: all 0.4s ease; position: relative; overflow: hidden; }
+        .nav-menu a::before { content: ''; position: absolute; bottom: 0; left: -100%; width: 100%; height: 3px; background: var(--secondary-color); transition: all 0.4s ease; box-shadow: 0 0 10px var(--secondary-color); }
         .nav-menu a:hover { color: var(--secondary-color); background: rgba(11, 135, 147, 0.05); }
-
-        .nav-login-btn { background: var(--primary-color); color: white; border: none; padding: 12px 25px; border-radius: 12px; cursor: pointer; font-weight: 600; transition: 0.3s; }
-        .nav-login-btn:hover { background: #08331e; transform: scale(1.05); }
+        .nav-menu a:hover::before { left: 0; }
+        .nav-login-btn { background: var(--primary-color); color: white; border: none; padding: 12px 25px; border-radius: 12px; cursor: pointer; font-weight: 600; transition: 0.3s; box-shadow: 0 4px 10px rgba(13, 74, 45, 0.2); }
+        .nav-login-btn:hover { background: #08331e; transform: translateY(-3px); }
 
         /* SLIDER */
         .slider-container { width: 100%; height: 70vh; overflow: hidden; position: relative; }
@@ -31,13 +30,17 @@
         .slide img { width: 100%; height: 100%; object-fit: cover; }
         @keyframes slide { 0%, 30% { transform: translateX(0); } 33%, 63% { transform: translateX(-33.33%); } 66%, 100% { transform: translateX(-66.66%); } }
 
-        /* YENİ BÖLÜMLERİN STİLİ */
-        .section-box { padding: 80px 50px; text-align: center; background: white; border-bottom: 1px solid #eee; }
-        .section-title { font-size: 32px; color: var(--primary-color); margin-bottom: 40px; }
-        .grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
-        .card { padding: 20px; background: var(--bg-color); border-radius: 15px; transition: 0.3s; }
-        .card:hover { transform: translateY(-10px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        /* BÖLÜMLER - GÜNCELLENDİ */
+        .section-box { padding: 80px 50px; text-align: center; background: white; }
+        .section-title { font-size: 36px; color: var(--primary-color); margin-bottom: 50px; position: relative; }
+        .grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+        .card { padding: 40px; background: white; border-radius: 20px; border: 1px solid #eee; transition: 0.4s; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        .card:hover { transform: translateY(-15px); border-color: var(--secondary-color); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
+        .card i { font-size: 40px; color: var(--secondary-color); margin-bottom: 20px; }
 
+        /* FOOTER - YENİ EKLENDİ */
+        .footer { background: var(--primary-color); color: white; padding: 50px; text-align: center; }
+        
         /* MODAL */
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 2000; justify-content: center; align-items: center; }
         .modal-content { background: white; padding: 40px; border-radius: 20px; width: 400px; text-align: center; }
@@ -69,34 +72,43 @@
 
     <div class="slider-container">
         <div class="slider">
-            <div class="slide"><img src="https://picsum.photos/1920/1080?1" alt="Resim 1"></div>
-            <div class="slide"><img src="https://picsum.photos/1920/1080?2" alt="Resim 2"></div>
-            <div class="slide"><img src="https://picsum.photos/1920/1080?3" alt="Resim 3"></div>
+            <div class="slide"><img src="https://picsum.photos/1920/1080?1" alt="Slider 1"></div>
+            <div class="slide"><img src="https://picsum.photos/1920/1080?2" alt="Slider 2"></div>
+            <div class="slide"><img src="https://picsum.photos/1920/1080?3" alt="Slider 3"></div>
         </div>
     </div>
 
     <section id="birimlerimiz" class="section-box">
         <h2 class="section-title">Birimlerimiz</h2>
         <div class="grid-container">
-            <div class="card"><h3>Eğitim Birimi</h3><p>Akademik destek ve kurslar.</p></div>
-            <div class="card"><h3>Spor Birimi</h3><p>Profesyonel antrenmanlar.</p></div>
-            <div class="card"><h3>Gençlik Birimi</h3><p>Sosyal faaliyetler ve kulüpler.</p></div>
+            <div class="card"><i class="fa-solid fa-book-open"></i><h3>Eğitim Birimi</h3><p>Modern akademik destek.</p></div>
+            <div class="card"><i class="fa-solid fa-dumbbell"></i><h3>Spor Birimi</h3><p>Profesyonel antrenmanlar.</p></div>
+            <div class="card"><i class="fa-solid fa-users"></i><h3>Gençlik Birimi</h3><p>Sosyal faaliyetler.</p></div>
         </div>
     </section>
 
     <section id="hizmetlerimiz" class="section-box" style="background:#f9f9f9;">
         <h2 class="section-title">Hizmetlerimiz</h2>
         <div class="grid-container">
-            <div class="card"><h3>Online Kayıt</h3><p>Hızlı ve kolay başvuru.</p></div>
-            <div class="card"><h3>Veli Bilgilendirme</h3><p>Sürekli iletişim.</p></div>
-            <div class="card"><h3>Kütüphane</h3><p>Zengin kaynak erişimi.</p></div>
+            <div class="card"><i class="fa-solid fa-pen-to-square"></i><h3>Online Kayıt</h3><p>Hızlı başvuru.</p></div>
+            <div class="card"><i class="fa-solid fa-comments"></i><h3>Veli Bilgilendirme</h3><p>Sürekli iletişim.</p></div>
+            <div class="card"><i class="fa-solid fa-building-columns"></i><h3>Kütüphane</h3><p>Zengin kaynak.</p></div>
         </div>
     </section>
 
     <section id="iletisim" class="section-box">
         <h2 class="section-title">İletişim</h2>
-        <p>Adres: Karaman, Türkiye | Telefon: 0 (XXX) XXX XX XX</p>
+        <p>Bize her zaman ulaşabilirsiniz.</p>
+        <div style="margin-top:30px;">
+            <input type="text" placeholder="Adınız Soyadınız" style="padding:10px; width:300px; margin-bottom:10px;"><br>
+            <textarea placeholder="Mesajınız" style="padding:10px; width:300px; height:100px;"></textarea><br>
+            <button class="nav-login-btn" style="margin-top:10px;">Gönder</button>
+        </div>
     </section>
+
+    <footer class="footer">
+        <p>&copy; 2026 Şehbal Eğitim Gençlik ve Spor Kulübü - Tüm hakları saklıdır.</p>
+    </footer>
 
 </body>
 </html>
