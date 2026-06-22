@@ -3,33 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Şehbal | Eğitim Bilgi Sistemi</title>
+    <title>Şehbal | Eğitim ve Spor Kulübü</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root { --primary-color: #0d4a2d; --secondary-color: #0b8793; --bg-color: #f3f4f6; }
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; scroll-behavior: smooth; }
         
-        /* NAVBAR */
+        /* NAVBAR - SABİT VE SAĞLAM */
         .navbar { background: white; padding: 15px 50px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 20px rgba(0,0,0,0.08); position: sticky; top: 0; z-index: 1000; }
+        
+        .logo-link { text-decoration: none; display: flex; align-items: center; }
         .site-logo { height: 75px; transition: 0.3s; }
         .site-logo:hover { transform: scale(1.05); }
         
-        .nav-menu { display: flex; gap: 20px; }
+        .nav-menu { display: flex; gap: 25px; align-items: center; }
         .nav-menu a { text-decoration: none; color: #4b5563; font-weight: 600; padding: 10px 15px; border-radius: 8px; transition: 0.4s; position: relative; }
         .nav-menu a:hover { color: var(--secondary-color); background: rgba(11, 135, 147, 0.05); }
 
         .nav-login-btn { background: var(--primary-color); color: white; border: none; padding: 12px 25px; border-radius: 12px; cursor: pointer; font-weight: 600; transition: 0.3s; }
         .nav-login-btn:hover { background: #08331e; transform: scale(1.05); }
 
-        /* SLIDER & HERO */
+        /* SLIDER */
         .slider-container { width: 100%; height: 70vh; overflow: hidden; position: relative; }
         .slider { display: flex; width: 300%; height: 100%; animation: slide 30s infinite; }
         .slide { width: 100%; height: 100%; }
         .slide img { width: 100%; height: 100%; object-fit: cover; }
         @keyframes slide { 0%, 30% { transform: translateX(0); } 33%, 63% { transform: translateX(-33.33%); } 66%, 100% { transform: translateX(-66.66%); } }
 
-        /* MODAL (Giriş Paneli Kutusu) */
+        /* YENİ BÖLÜMLERİN STİLİ */
+        .section-box { padding: 80px 50px; text-align: center; background: white; border-bottom: 1px solid #eee; }
+        .section-title { font-size: 32px; color: var(--primary-color); margin-bottom: 40px; }
+        .grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
+        .card { padding: 20px; background: var(--bg-color); border-radius: 15px; transition: 0.3s; }
+        .card:hover { transform: translateY(-10px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+
+        /* MODAL */
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 2000; justify-content: center; align-items: center; }
         .modal-content { background: white; padding: 40px; border-radius: 20px; width: 400px; text-align: center; }
     </style>
@@ -37,14 +46,14 @@
 <body>
 
     <nav class="navbar">
-        <a href="index.html">
+        <a href="index.html" class="logo-link">
             <img src="326305349_728971212082418_2867891597224688947_n.png" class="site-logo">
         </a>
         <div class="nav-menu">
             <a href="index.html">Ana Sayfa</a>
-            <a href="#">Birimlerimiz</a>
-            <a href="#">Hizmetlerimiz</a>
-            <a href="#">İletişim</a>
+            <a href="#birimlerimiz">Birimlerimiz</a>
+            <a href="#hizmetlerimiz">Hizmetlerimiz</a>
+            <a href="#iletisim">İletişim</a>
         </div>
         <button class="nav-login-btn" onclick="document.getElementById('loginModal').style.display='flex'">Giriş Yap</button>
     </nav>
@@ -54,7 +63,7 @@
             <h2 style="color:var(--primary-color);">Giriş Seçin</h2>
             <button class="nav-login-btn" style="width:100%; margin-top:20px;">Öğrenci Girişi</button>
             <button class="nav-login-btn" style="width:100%; margin-top:10px; background:var(--secondary-color);">Öğretmen Girişi</button>
-            <p style="margin-top:20px; cursor:pointer;" onclick="document.getElementById('loginModal').style.display='none'">Kapat</p>
+            <p style="margin-top:20px; cursor:pointer; color:#666;" onclick="document.getElementById('loginModal').style.display='none'">Kapat</p>
         </div>
     </div>
 
@@ -65,6 +74,29 @@
             <div class="slide"><img src="https://picsum.photos/1920/1080?3" alt="Resim 3"></div>
         </div>
     </div>
+
+    <section id="birimlerimiz" class="section-box">
+        <h2 class="section-title">Birimlerimiz</h2>
+        <div class="grid-container">
+            <div class="card"><h3>Eğitim Birimi</h3><p>Akademik destek ve kurslar.</p></div>
+            <div class="card"><h3>Spor Birimi</h3><p>Profesyonel antrenmanlar.</p></div>
+            <div class="card"><h3>Gençlik Birimi</h3><p>Sosyal faaliyetler ve kulüpler.</p></div>
+        </div>
+    </section>
+
+    <section id="hizmetlerimiz" class="section-box" style="background:#f9f9f9;">
+        <h2 class="section-title">Hizmetlerimiz</h2>
+        <div class="grid-container">
+            <div class="card"><h3>Online Kayıt</h3><p>Hızlı ve kolay başvuru.</p></div>
+            <div class="card"><h3>Veli Bilgilendirme</h3><p>Sürekli iletişim.</p></div>
+            <div class="card"><h3>Kütüphane</h3><p>Zengin kaynak erişimi.</p></div>
+        </div>
+    </section>
+
+    <section id="iletisim" class="section-box">
+        <h2 class="section-title">İletişim</h2>
+        <p>Adres: Karaman, Türkiye | Telefon: 0 (XXX) XXX XX XX</p>
+    </section>
 
 </body>
 </html>
