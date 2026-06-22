@@ -3,102 +3,311 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Şehbal</title>
+    <title>Şehbal | Eğitim Bilgi Sistemi</title>
+    <!-- Modern Yazı Tipi -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Profesyonel İkonlar -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; background-color: #f0f4f8; color: #333; }
-        header { background-color: #1a365d; color: white; padding: 30px 20px; text-align: center; border-bottom: 4px solid #3182ce; }
-        header h1 { margin: 0; font-size: 36px; letter-spacing: 1px; }
-        header p { margin: 10px 0 0 0; color: #bee3f8; font-size: 16px; }
-        
-        .container { max-width: 800px; margin: 40px auto; padding: 0 20px; }
-        .card { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); margin-bottom: 25px; text-align: center; }
-        
-        .btn-group { display: flex; justify-content: center; gap: 20px; margin-top: 25px; flex-wrap: wrap; }
-        .btn { padding: 15px 30px; font-size: 16px; color: white; border: none; border-radius: 8px; cursor: pointer; transition: 0.2s; font-weight: bold; width: 220px; }
-        .btn-student { background-color: #3182ce; }
-        .btn-student:hover { background-color: #2b6cb0; }
-        .btn-teacher { background-color: #38a169; }
-        .btn-teacher:hover { background-color: #2f855a; }
-        
-        .announcements { text-align: left; background-color: #ebf8ff; border-left: 4px solid #3182ce; padding: 20px; border-radius: 0 8px 8px 0; }
-        .announcements h3 { margin-top: 0; color: #2b6cb0; }
-        .announcements ul { padding-left: 20px; margin-bottom: 0; }
-        .announcements li { margin-bottom: 10px; }
+        :root {
+            --primary-color: #1e3a8a; /* Koyu Lacivert */
+            --secondary-color: #3b82f6; /* Canlı Mavi */
+            --bg-color: #f3f4f6;
+            --text-color: #1f2937;
+        }
 
-        /* Giriş Formları (Başlangıçta Gizli) */
-        .login-section { display: none; max-width: 400px; margin: 40px auto; }
-        input { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #e2e8f0; border-radius: 6px; box-sizing: border-box; font-size: 16px; }
-        .submit-btn { width: 100%; padding: 12px; color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 16px; font-weight: bold; margin-top: 10px; }
-        .back-btn { background-color: #cbd5e0; color: #4a5568; margin-top: 15px; }
-        .back-btn:hover { background-color: #a0aec0; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Yeni Üst Menü (Navbar) Tasarımı */
+        .navbar {
+            background-color: white;
+            padding: 15px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        /* Logo Alanı */
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+        }
+
+        .logo i {
+            color: var(--secondary-color);
+            font-size: 28px;
+        }
+
+        /* Ortadaki Sekmeler */
+        .nav-menu {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #4b5563;
+            font-weight: 500;
+            font-size: 15px;
+            transition: 0.3s;
+            position: relative;
+        }
+
+        .nav-menu a:hover {
+            color: var(--secondary-color);
+        }
+
+        /* Aktif sayfanın altını çizme efekti */
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: var(--secondary-color);
+            transition: width 0.3s;
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        /* Sağ Köşedeki Giriş Kutucuğu */
+        .nav-login-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-login-btn:hover {
+            background-color: #152a66;
+            box-shadow: 0 4px 10px rgba(30, 58, 138, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* Ana İçerik */
+        .main-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+        }
+
+        .login-wrapper {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+            display: flex;
+            width: 100%;
+            max-width: 900px;
+            overflow: hidden;
+            min-height: 500px;
+        }
+
+        .welcome-side {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            width: 50%;
+            color: white;
+            padding: 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .welcome-side i { font-size: 80px; margin-bottom: 20px; opacity: 0.9; }
+        .welcome-side h2 { font-size: 28px; margin-bottom: 15px; font-weight: 600; }
+        .welcome-side p { font-size: 15px; opacity: 0.8; line-height: 1.6; }
+
+        .form-side {
+            width: 50%;
+            padding: 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: #ffffff;
+        }
+
+        .panel-title { font-size: 22px; font-weight: 600; margin-bottom: 30px; color: var(--primary-color); text-align: center; }
+        .input-group { position: relative; margin-bottom: 25px; }
+        .input-group i { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: #9ca3af; }
+        
+        .input-group input {
+            width: 100%; padding: 15px 15px 15px 45px; border: 1px solid #e5e7eb; border-radius: 10px;
+            font-size: 15px; transition: all 0.3s; outline: none; background-color: #f9fafb;
+        }
+
+        .input-group input:focus { border-color: var(--secondary-color); box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1); background-color: white; }
+
+        .btn {
+            width: 100%; padding: 15px; border: none; border-radius: 10px; font-size: 16px; font-weight: 600;
+            color: white; cursor: pointer; transition: all 0.3s; display: flex; justify-content: center; align-items: center; gap: 10px; margin-bottom: 15px;
+        }
+
+        .btn-student { background-color: var(--secondary-color); }
+        .btn-student:hover { background-color: #2563eb; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(59, 130, 246, 0.3); }
+        
+        .btn-teacher { background-color: #10b981; }
+        .btn-teacher:hover { background-color: #059669; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(16, 185, 129, 0.3); }
+
+        .back-link { text-align: center; display: block; margin-top: 15px; color: #6b7280; text-decoration: none; font-size: 14px; cursor: pointer; transition: 0.3s; }
+        .back-link:hover { color: var(--primary-color); }
+
+        .login-section { display: none; }
+        .active-section { display: block; animation: fadeIn 0.5s; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Mobil Uyumluluk */
+        @media (max-width: 768px) {
+            .navbar { flex-direction: column; gap: 15px; padding: 15px 20px; }
+            .nav-menu { flex-wrap: wrap; justify-content: center; gap: 15px; }
+            .login-wrapper { flex-direction: column; }
+            .welcome-side, .form-side { width: 100%; padding: 30px; }
+            .welcome-side { min-height: 250px; }
+            .welcome-side i { font-size: 50px; }
+        }
     </style>
 </head>
 <body>
 
-<!-- Üst Başlık -->
-<header>
-    <h1>Şehbal</h1>
-    <p>Öğrenci ve Öğretmen Bilgi Yönetim Sistemi</p>
-</header>
+    <!-- YENİ EKLENEN ÜST MENÜ -->
+    <nav class="navbar">
+        <!-- İleride resimli logo eklemek istersen <i...> kısmını silip <img src="logo.png"> yazacağız -->
+        <div class="logo">
+            <i class="fa-solid fa-graduation-cap"></i> Şehbal
+        </div>
+        
+        <!-- Sekmeler -->
+        <div class="nav-menu">
+            <a href="#" style="color: var(--secondary-color); font-weight: bold;">Ana Sayfa</a>
+            <a href="#">Hakkımızda</a>
+            <a href="#">Haberler</a>
+            <a href="#">Dükkan</a>
+        </div>
 
-<!-- Ana Sayfa İçeriği -->
-<div class="container" id="home-page">
-    
-    <!-- Duyurular Bölümü -->
-    <div class="announcements">
-        <h3>📌 Güncel Duyurular</h3>
-        <ul>
-            <li>Şehbal sistemine hoş geldiniz! Altyapı çalışmalarımız devam etmektedir.</li>
-            <li>Sisteme giriş şifrelerinizi sınıf öğretmeninizden veya idareden alabilirsiniz.</li>
-        </ul>
-    </div>
+        <!-- Sağ Köşe Giriş Butonu -->
+        <div>
+            <button class="nav-login-btn" onclick="showPanel('selection')">
+                <i class="fa-solid fa-right-to-bracket"></i> Giriş
+            </button>
+        </div>
+    </nav>
 
-    <!-- Giriş Butonları -->
-    <div class="card">
-        <h2>Sisteme Giriş Yapın</h2>
-        <p>Lütfen işlem yapmak istediğiniz paneli seçiniz.</p>
-        <div class="btn-group">
-            <button class="btn btn-student" onclick="showLogin('student')">👨‍🎓 Öğrenci Girişi</button>
-            <button class="btn btn-teacher" onclick="showLogin('teacher')">👨‍🏫 Öğretmen Girişi</button>
+    <!-- Ana İçerik -->
+    <div class="main-container">
+        <div class="login-wrapper">
+            
+            <div class="welcome-side">
+                <i class="fa-solid fa-school"></i>
+                <h2>Şehbal'e Hoş Geldiniz</h2>
+                <p>Modern eğitim teknolojileri ile öğrenci ve öğretmenlerimizi tek bir platformda buluşturuyoruz.</p>
+            </div>
+
+            <div class="form-side">
+                
+                <div id="selection-screen" class="active-section">
+                    <h3 class="panel-title">Sisteme Giriş</h3>
+                    <p style="text-align: center; color: #6b7280; margin-bottom: 30px; font-size: 14px;">Lütfen giriş yapmak istediğiniz paneli seçin.</p>
+                    
+                    <button class="btn btn-student" onclick="showPanel('student')">
+                        <i class="fa-solid fa-user-graduate"></i> Öğrenci Girişi
+                    </button>
+                    
+                    <button class="btn btn-teacher" onclick="showPanel('teacher')">
+                        <i class="fa-solid fa-chalkboard-user"></i> Öğretmen Girişi
+                    </button>
+                </div>
+
+                <div id="student-login" class="login-section">
+                    <h3 class="panel-title">Öğrenci Paneli</h3>
+                    
+                    <div class="input-group">
+                        <i class="fa-solid fa-id-card"></i>
+                        <input type="text" placeholder="Öğrenci Numarası">
+                    </div>
+                    
+                    <div class="input-group">
+                        <i class="fa-solid fa-lock"></i>
+                        <input type="password" placeholder="Şifre">
+                    </div>
+
+                    <button class="btn btn-student" onclick="alert('Öğrenci veritabanı yakında bağlanacak!')">Giriş Yap</button>
+                    <a class="back-link" onclick="showPanel('selection')"><i class="fa-solid fa-arrow-left"></i> Geri Dön</a>
+                </div>
+
+                <div id="teacher-login" class="login-section">
+                    <h3 class="panel-title">Öğretmen Paneli</h3>
+                    
+                    <div class="input-group">
+                        <i class="fa-solid fa-envelope"></i>
+                        <input type="text" placeholder="E-posta Adresi veya T.C.">
+                    </div>
+                    
+                    <div class="input-group">
+                        <i class="fa-solid fa-lock"></i>
+                        <input type="password" placeholder="Şifre">
+                    </div>
+
+                    <button class="btn btn-teacher" onclick="alert('Öğretmen veritabanı yakında bağlanacak!')">Giriş Yap</button>
+                    <a class="back-link" onclick="showPanel('selection')"><i class="fa-solid fa-arrow-left"></i> Geri Dön</a>
+                </div>
+
+            </div>
         </div>
     </div>
-</div>
 
-<!-- Öğrenci Giriş Ekranı -->
-<div class="login-section card" id="student-login">
-    <h2 style="color: #3182ce;">Öğrenci Girişi</h2>
-    <input type="text" placeholder="Öğrenci Numarası">
-    <input type="password" placeholder="Şifre">
-    <button class="submit-btn" style="background-color: #3182ce;" onclick="alert('Gerçek öğrenci paneli yapım aşamasında!')">Giriş Yap</button>
-    <button class="submit-btn back-btn" onclick="goBack()">Ana Sayfaya Dön</button>
-</div>
+    <script>
+        function showPanel(type) {
+            document.getElementById('selection-screen').classList.remove('active-section');
+            document.getElementById('student-login').classList.remove('active-section');
+            document.getElementById('teacher-login').classList.remove('active-section');
 
-<!-- Öğretmen Giriş Ekranı -->
-<div class="login-section card" id="teacher-login">
-    <h2 style="color: #38a169;">Öğretmen Girişi</h2>
-    <input type="text" placeholder="Kullanıcı Adı">
-    <input type="password" placeholder="Şifre">
-    <button class="submit-btn" style="background-color: #38a169;" onclick="alert('Gerçek öğretmen paneli yapım aşamasında!')">Giriş Yap</button>
-    <button class="submit-btn back-btn" onclick="goBack()">Ana Sayfaya Dön</button>
-</div>
-
-<!-- Sayfa Değiştirme Animasyonları (JavaScript) -->
-<script>
-    function showLogin(type) {
-        document.getElementById('home-page').style.display = 'none';
-        if(type === 'student') {
-            document.getElementById('student-login').style.display = 'block';
-        } else {
-            document.getElementById('teacher-login').style.display = 'block';
+            if (type === 'student') {
+                document.getElementById('student-login').classList.add('active-section');
+            } else if (type === 'teacher') {
+                document.getElementById('teacher-login').classList.add('active-section');
+            } else {
+                document.getElementById('selection-screen').classList.add('active-section');
+            }
         }
-    }
-
-    function goBack() {
-        document.getElementById('student-login').style.display = 'none';
-        document.getElementById('teacher-login').style.display = 'none';
-        document.getElementById('home-page').style.display = 'block';
-    }
-</script>
+    </script>
 
 </body>
 </html>
+
