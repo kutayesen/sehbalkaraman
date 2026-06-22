@@ -14,36 +14,138 @@
             --glass: rgba(255, 255, 255, 0.8);
         }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; scroll-behavior: smooth; }
-        body { background: #f0f2f0; }
+        body { background: #f0f2f0; overflow-x: hidden; } /* Yatay kaydırmayı engelle */
 
-        /* NAVBAR - 3D VE DERİNLİK EFEKLİ */
+        /* --- NAVBAR - GÜNCELLENDİ (KAVİSLİ UÇLAR) --- */
         .navbar { 
             background: linear-gradient(to bottom, #ffffff, #f8f9f8); 
-            padding: 15px 50px; 
+            padding: 10px 30px; /* Padding biraz azaltıldı */
             display: flex; justify-content: space-between; align-items: center; 
             box-shadow: 0 10px 30px rgba(0,0,0,0.08);
             border-bottom: 2px solid rgba(13, 74, 45, 0.1);
-            position: sticky; top: 0; z-index: 1000;
+            position: sticky; top: 10px; z-index: 1000; /* Biraz aşağıdan başlasın */
+            border-radius: 50px; /* Kavisli uçlar */
+            width: calc(100% - 20px); /* Kenarlardan boşluk */
+            margin: 0 auto; /* Ortala */
         }
         
-        .site-logo { height: 75px; transition: 0.4s; filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.1)); }
+        .site-logo { 
+            height: 60px; /* Logo boyutu biraz küçültüldü */
+            transition: 0.4s; 
+            filter: drop-shadow(1px 2px 3px rgba(0,0,0,0.1)); 
+            margin-right: 20px; /* Biraz boşluk */
+        }
         .site-logo:hover { transform: scale(1.05) rotate(2deg); }
         
         .nav-menu a { 
-            text-decoration: none; color: #333; font-weight: 600; padding: 10px 20px; 
+            text-decoration: none; color: #333; font-weight: 600; padding: 8px 15px; /* Padding azaltıldı */
             border-radius: 12px; transition: all 0.4s ease;
+            font-size: 14px; /* Yazı boyutu küçültüldü */
         }
         .nav-menu a:hover { background: rgba(13, 74, 45, 0.1); color: var(--primary-color); box-shadow: inset 0 0 10px rgba(0,0,0,0.05); }
 
         .nav-login-btn { 
             background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-            color: white; border: none; padding: 12px 25px; border-radius: 15px; 
+            color: white; border: none; padding: 10px 20px; /* Padding azaltıldı */
+            border-radius: 15px; 
             cursor: pointer; font-weight: 600; transition: 0.4s;
             box-shadow: 0 8px 15px rgba(11, 135, 147, 0.3);
+            font-size: 14px; /* Yazı boyutu küçültüldü */
         }
         .nav-login-btn:active { transform: scale(0.95); }
 
-        /* 3D KARTLAR VE BÖLÜMLER */
+        /* --- MODAL --- */
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); backdrop-filter: blur(5px); z-index: 2000; justify-content: center; align-items: center; }
+        .modal-content { background: white; padding: 40px; border-radius: 30px; width: 400px; text-align: center; box-shadow: 0 20px 50px rgba(0,0,0,0.2); }
+
+        /* --- HABER SLIDER - YENİ (ESKİ HERO YERİNE) --- */
+        .hero-slider {
+            width: 100%;
+            height: 60vh;
+            overflow: hidden;
+            position: relative;
+            background: #000; /* Görseller yüklenirken siyah arka plan */
+        }
+
+        .slider-inner {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.8s ease-in-out; /* Kayma animasyonu */
+        }
+
+        .slide-card {
+            min-width: 100%;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .slide-card a {
+            text-decoration: none;
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        .slide-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Görseli sığdır */
+            transition: transform 0.5s ease;
+        }
+
+        .slide-card:hover img {
+            transform: scale(1.05); /* Üzerine gelince hafif büyüme */
+        }
+
+        .slide-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 40px;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent); /* Metin okunabilirliği için geçiş */
+            color: white;
+            z-index: 1;
+        }
+
+        .slide-content h3 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .slide-content p {
+            font-size: 1rem;
+            opacity: 0.9;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        /* Slider Navigasyon Butonları */
+        .slider-prev, .slider-next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255,255,255,0.3);
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 2;
+            transition: background 0.3s;
+        }
+
+        .slider-prev:hover, .slider-next:hover {
+            background: rgba(255,255,255,0.5);
+        }
+
+        .slider-prev { left: 20px; }
+        .slider-next { right: 20px; }
+
+        /* --- 3D KARTLAR VE BÖLÜMLER --- */
         .section-box { padding: 80px 50px; text-align: center; background: var(--bg-gradient); }
         .card { 
             padding: 40px; background: white; border-radius: 25px; 
@@ -54,18 +156,15 @@
         .card:hover { transform: translateY(-15px); box-shadow: 20px 20px 60px rgba(0,0,0,0.1); }
         .card i { font-size: 40px; margin-bottom: 15px; background: -webkit-linear-gradient(var(--primary-color), var(--secondary-color)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
-        /* FOOTER */
+        /* --- FOOTER --- */
         .footer { background: linear-gradient(135deg, #0d4a2d, #08331e); color: white; padding: 40px; text-align: center; box-shadow: 0 -10px 30px rgba(0,0,0,0.1); }
-        
-        /* MODAL */
-        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); backdrop-filter: blur(5px); z-index: 2000; justify-content: center; align-items: center; }
-        .modal-content { background: white; padding: 40px; border-radius: 30px; width: 400px; text-align: center; box-shadow: 0 20px 50px rgba(0,0,0,0.2); }
     </style>
 </head>
 <body>
 
+    <!-- NAVBAR - KAVİSLİ UÇLAR VE DÜZELTİLMİŞ LOGO -->
     <nav class="navbar">
-        <a href="index.html"><img src="326305349_728971212082418_2867891597224688947_n.png" class="site-logo"></a>
+        <a href="index.html"><img src="sehbal-logo.png" class="site-logo"></a>
         <div class="nav-menu">
             <a href="index.html">Ana Sayfa</a>
             <a href="#birimlerimiz">Birimlerimiz</a>
@@ -74,6 +173,7 @@
         <button class="nav-login-btn" onclick="document.getElementById('loginModal').style.display='flex'">Giriş Yap</button>
     </nav>
 
+    <!-- MODAL -->
     <div class="modal" id="loginModal">
         <div class="modal-content">
             <h2 style="color:var(--primary-color);">Panel Seçimi</h2>
@@ -83,11 +183,46 @@
         </div>
     </div>
 
-    <!-- SADECE 'ŞEHBAL' YAZAN BÜYÜTÜLMÜŞ ANA EKRAN YAZISI -->
-    <div style="width: 100%; height: 60vh; background: linear-gradient(45deg, #0d4a2d, #0b8793); display: flex; align-items: center; justify-content: center; color: white;">
-        <h1 style="font-size: 5rem; letter-spacing: 2px; text-shadow: 3px 5px 15px rgba(0,0,0,0.3);">Şehbal</h1>
-    </div>
+    <!-- HABER SLIDER - YENİ (ESKİ HERO YERİNE) -->
+    <div class="hero-slider">
+        <div class="slider-inner">
+            <!-- 1. Haber -->
+            <div class="slide-card">
+                <a href="#birimlerimiz"> <!-- Tıklayınca Birimlerimiz'e kaydır -->
+                    <img src="https://images.unsplash.com/photo-1541339907198-e08756defe13?q=80&w=2070&auto=format&fit=crop" alt="Eğitim">
+                    <div class="slide-content">
+                        <h3>Şehbal'de Yeni Dönem Başlıyor!</h3>
+                        <p>Eğitim, spor ve gençlik faaliyetlerimizle dolu yeni bir döneme hazır olun.</p>
+                    </div>
+                </a>
+            </div>
+            <!-- 2. Haber -->
+            <div class="slide-card">
+                <a href="#birimlerimiz">
+                    <img src="https://images.unsplash.com/photo-1517649763962-0c623066013b?q=80&w=2070&auto=format&fit=crop" alt="Spor">
+                    <div class="slide-content">
+                        <h3>Spor Takımlarımız Şampiyonluğa Koşuyor</h3>
+                        <p>Profesyonel antrenörlerimiz eşliğinde başarıdan başarıya koşan takımlarımıza katılın.</p>
+                    </div>
+                </a>
+            </div>
+            <!-- 3. Haber -->
+            <div class="slide-card">
+                <a href="#birimlerimiz">
+                    <img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=2070&auto=format&fit=crop" alt="Gençlik">
+                    <div class="slide-content">
+                        <h3>Gençlik Kulüplerimizde Sosyalleşin</h3>
+                        <p>Farklı ilgi alanlarına yönelik kulüplerimizle yeni arkadaşlar edinin, yeteneklerinizi geliştirin.</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <!-- Slider Butonları -->
+        <button class="slider-prev"><i class="fa-solid fa-chevron-left"></i></button>
+        <button class="slider-next"><i class="fa-solid fa-chevron-right"></i></button>
+    </num>
 
+    <!-- BİRİMLERİMİZ BÖLÜMÜ - DEĞİŞMEDİ -->
     <section id="birimlerimiz" class="section-box">
         <h2 style="margin-bottom: 50px; font-size: 3rem;">Birimlerimiz</h2>
         <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px;">
@@ -97,9 +232,65 @@
         </div>
     </section>
 
+    <!-- FOOTER - DEĞİŞMEDİ -->
     <footer class="footer">
         <p>&copy; 2026 Şehbal - Modern Eğitim Platformu</p>
     </footer>
+
+    <!-- SLIDER İÇİN JAVASCRIPT - YENİ -->
+    <script>
+        const sliderInner = document.querySelector('.slider-inner');
+        const slides = document.querySelectorAll('.slide-card');
+        const prevBtn = document.querySelector('.slider-prev');
+        const nextBtn = document.querySelector('.slider-next');
+
+        let currentIndex = 0;
+        let slideInterval;
+
+        // Haber Kaydırma Fonksiyonu
+        function showSlide(index) {
+            // Endeks sınırlarını kontrol et
+            if (index < 0) {
+                currentIndex = slides.length - 1;
+            } else if (index >= slides.length) {
+                currentIndex = 0;
+            } else {
+                currentIndex = index;
+            }
+
+            // Kaydırma animasyonu
+            sliderInner.style.transform = `translateX(-${currentIndex * 100}%)`;
+        }
+
+        // Sonraki Habere Geçme
+        function nextSlide() {
+            showSlide(currentIndex + 1);
+        }
+
+        // Önceki Habere Geçme
+        function prevSlide() {
+            showSlide(currentIndex - 1);
+        }
+
+        // Otomatik Kaydırmayı Başlat/Sıfırla
+        function startInterval() {
+            clearInterval(slideInterval); // Önceki intervalı temizle
+            slideInterval = setInterval(nextSlide, 10000); // 10 saniyede bir kaydır
+        }
+
+        // Buton Tıklamaları
+        nextBtn.addEventListener('click', () => {
+            nextSlide();
+            startInterval(); // Tıklayınca zamanlayıcıyı sıfırla
+        });
+        prevBtn.addEventListener('click', () => {
+            prevSlide();
+            startInterval(); // Tıklayınca zamanlayıcıyı sıfırla
+        });
+
+        // Sayfa Yüklendiğinde Başlat
+        startInterval();
+    </script>
 
 </body>
 </html>
