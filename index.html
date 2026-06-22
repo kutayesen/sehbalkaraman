@@ -29,26 +29,27 @@
             margin: 0 auto; 
         }
         
-        /* --- LOGO KAPSAYICISI (YENİ GÜNCELLEME) --- */
+        /* --- LOGO KAPSAYICISI (ŞIK BEYAZ HAP TASARIMI) --- */
         .logo-wrapper {
             display: flex;
             align-items: center;
             justify-content: center;
-            background-color: transparent; /* Panelle aynı renk hissi için arka planı şeffaf yaptık */
-            border: 1.5px solid rgba(255, 255, 255, 0.8); /* İnce beyaz çizgi eklendi */
-            border-radius: 30px;
-            padding: 5px 15px;
+            background-color: #ffffff; /* Temiz bir beyaz arka plan */
+            border-radius: 30px; /* Tam kavisli kenarlar */
+            padding: 5px 15px; /* Logonun etrafında nefes alacak boşluk */
             margin-right: 20px;
             transition: 0.4s;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Panelin üstünde havada dursun diye hafif gölge */
+            text-decoration: none;
         }
         .logo-wrapper:hover {
-            transform: scale(1.05) rotate(2deg);
-            box-shadow: 0 4px 10px rgba(255, 255, 255, 0.2);
+            transform: scale(1.05) translateY(-2px); /* Üzerine gelince tatlı bir kalkış efekti */
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
         }
 
         .site-logo { 
-            height: 55px; 
-            mix-blend-mode: multiply; /* Logonun kendi beyaz karesini gizlemeye devam eder */
+            height: 50px; /* Kapsayıcının içinde zarif dursun diye bir tık küçültüldü */
+            /* Logonun kendi renkleri parlasın diye mix-blend-mode kaldırıldı */
         }
         
         .nav-menu a { 
@@ -191,113 +192,4 @@
 <body>
 
     <nav class="navbar">
-        <a href="index.html" class="logo-wrapper"><img src="sehbal-logo.png" class="site-logo"></a>
-        <div class="nav-menu">
-            <a href="index.html">Ana Sayfa</a>
-            <a href="#birimlerimiz">Birimlerimiz</a>
-            <a href="#hizmetlerimiz">Hizmetlerimiz</a>
-        </div>
-        <button class="nav-login-btn" onclick="document.getElementById('loginModal').style.display='flex'">Giriş Yap</button>
-    </nav>
-
-    <div class="modal" id="loginModal">
-        <div class="modal-content">
-            <h2 style="color:var(--primary-color);">Panel Seçimi</h2>
-            <button class="nav-login-btn" style="width:100%; margin-top:20px; background:var(--primary-color);">Öğrenci Girişi</button>
-            <button class="nav-login-btn" style="width:100%; margin-top:10px; background:var(--logo-blue);">Öğretmen Girişi</button>
-            <p style="margin-top:20px; cursor:pointer;" onclick="document.getElementById('loginModal').style.display='none'">Kapat</p>
-        </div>
-    </div>
-
-    <div class="hero-slider">
-        <div class="slider-inner">
-            <div class="slide-card">
-                <a href="#birimlerimiz">
-                    <img src="https://images.unsplash.com/photo-1541339907198-e08756defe13?q=80&w=2070&auto=format&fit=crop" alt="Eğitim">
-                    <div class="slide-content">
-                        <h3>Şehbal'de Yeni Dönem Başlıyor!</h3>
-                        <p>Eğitim, spor ve gençlik faaliyetlerimizle dolu yeni bir döneme hazır olun.</p>
-                    </div>
-                </a>
-            </div>
-            <div class="slide-card">
-                <a href="#birimlerimiz">
-                    <img src="https://images.unsplash.com/photo-1517649763962-0c623066013b?q=80&w=2070&auto=format&fit=crop" alt="Spor">
-                    <div class="slide-content">
-                        <h3>Spor Takımlarımız Şampiyonluğa Koşuyor</h3>
-                        <p>Profesyonel antrenörlerimiz eşliğinde başarıdan başarıya koşan takımlarımıza katılın.</p>
-                    </div>
-                </a>
-            </div>
-            <div class="slide-card">
-                <a href="#birimlerimiz">
-                    <img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=2070&auto=format&fit=crop" alt="Gençlik">
-                    <div class="slide-content">
-                        <h3>Gençlik Kulüplerimizde Sosyalleşin</h3>
-                        <p>Farklı ilgi alanlarına yönelik kulüplerimizle yeni arkadaşlar edinin, yeteneklerinizi geliştirin.</p>
-                    </div>
-                </a>
-            </div>
-        </div>
-        <button class="slider-prev"><i class="fa-solid fa-chevron-left"></i></button>
-        <button class="slider-next"><i class="fa-solid fa-chevron-right"></i></button>
-    </div>
-
-    <section id="birimlerimiz" class="section-box">
-        <h2 style="margin-bottom: 50px; font-size: 3rem;">Birimlerimiz</h2>
-        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px;">
-            <div class="card"><i class="fa-solid fa-book-open"></i><h3>Eğitim</h3><p>Akademik destek.</p></div>
-            <div class="card"><i class="fa-solid fa-dumbbell"></i><h3>Spor</h3><p>Profesyonel antrenman.</p></div>
-            <div class="card"><i class="fa-solid fa-users"></i><h3>Gençlik</h3><p>Sosyal kulüpler.</p></div>
-        </div>
-    </section>
-
-    <section id="hizmetlerimiz" class="section-box alt-bg">
-        <h2 style="margin-bottom: 50px; font-size: 3rem;">Hizmetlerimiz</h2>
-        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px;">
-            <div class="card"><i class="fa-solid fa-compass"></i><h3>Rehberlik</h3><p>Birebir psikolojik ve akademik danışmanlık hizmetleri.</p></div>
-            <div class="card"><i class="fa-solid fa-palette"></i><h3>Sanat Atölyeleri</h3><p>Yaratıcılığınızı ve yeteneklerinizi keşfedeceğiniz faaliyetler.</p></div>
-            <div class="card"><i class="fa-solid fa-microphone"></i><h3>Seminerler</h3><p>Alanında uzman konuklarla ufuk açıcı eğitim söyleşileri.</p></div>
-        </div>
-    </section>
-
-    <footer class="footer">
-        <p>&copy; 2026 Şehbal - Modern Eğitim Platformu</p>
-    </footer>
-
-    <script>
-        const sliderInner = document.querySelector('.slider-inner');
-        const slides = document.querySelectorAll('.slide-card');
-        const prevBtn = document.querySelector('.slider-prev');
-        const nextBtn = document.querySelector('.slider-next');
-
-        let currentIndex = 0;
-        let slideInterval;
-
-        function showSlide(index) {
-            if (index < 0) {
-                currentIndex = slides.length - 1;
-            } else if (index >= slides.length) {
-                currentIndex = 0;
-            } else {
-                currentIndex = index;
-            }
-            sliderInner.style.transform = `translateX(-${currentIndex * 100}%)`;
-        }
-
-        function nextSlide() { showSlide(currentIndex + 1); }
-        function prevSlide() { showSlide(currentIndex - 1); }
-
-        function startInterval() {
-            clearInterval(slideInterval); 
-            slideInterval = setInterval(nextSlide, 10000); 
-        }
-
-        nextBtn.addEventListener('click', () => { nextSlide(); startInterval(); });
-        prevBtn.addEventListener('click', () => { prevSlide(); startInterval(); });
-
-        startInterval();
-    </script>
-
-</body>
-</html>
+        <a href="index.html"
