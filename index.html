@@ -10,19 +10,21 @@
         :root { 
             --primary-color: #0d4a2d; 
             --secondary-color: #0b8793; 
+            --logo-blue: #29b6f6; /* Logodaki açık mavi tonu için yeni renk değişkeni */
             --bg-gradient: linear-gradient(135deg, #fdfdfd, #eef3ef); 
             --glass: rgba(255, 255, 255, 0.8);
         }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; scroll-behavior: smooth; }
         body { background: #f0f2f0; overflow-x: hidden; }
 
-        /* --- NAVBAR --- */
+        /* --- NAVBAR - YENİ RENK VE 3D EFEKT --- */
         .navbar { 
-            background: linear-gradient(to bottom, #ffffff, #f8f9f8); 
+            /* Giriş butonunun eski rengi panelin arka planı oldu */
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color)); 
             padding: 10px 30px; 
             display: flex; justify-content: space-between; align-items: center; 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-            border-bottom: 2px solid rgba(13, 74, 45, 0.1);
+            /* Daha güçlü bir 3D görünüm için iç ve dış gölgeler */
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3), inset 0 3px 10px rgba(255,255,255,0.2), inset 0 -3px 10px rgba(0,0,0,0.3);
             position: sticky; top: 10px; z-index: 1000; 
             border-radius: 50px; 
             width: calc(100% - 20px); 
@@ -30,30 +32,46 @@
         }
         
         .site-logo { 
-            height: 60px; 
+            height: 55px; 
             transition: 0.4s; 
-            /* Logonun beyaz kare arka planını panelle bütünleştiren sihirli kod */
-            mix-blend-mode: multiply; 
+            /* Logo koyu zeminde parlasın diye şık bir beyaz kapsayıcı verildi */
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 5px 15px;
+            border-radius: 30px;
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.1), 0 4px 10px rgba(0,0,0,0.2);
             margin-right: 20px; 
         }
         .site-logo:hover { transform: scale(1.05) rotate(2deg); }
         
         .nav-menu a { 
-            text-decoration: none; color: #333; font-weight: 600; padding: 8px 15px; 
+            text-decoration: none; 
+            color: #ffffff; /* Koyu zeminde okunması için beyaz yapıldı */
+            font-weight: 600; padding: 8px 15px; 
             border-radius: 12px; transition: all 0.4s ease;
             font-size: 14px; 
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
         }
-        .nav-menu a:hover { background: rgba(13, 74, 45, 0.1); color: var(--primary-color); box-shadow: inset 0 0 10px rgba(0,0,0,0.05); }
+        .nav-menu a:hover { 
+            background: rgba(255, 255, 255, 0.15); 
+            color: #ffffff; 
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.1); 
+        }
 
+        /* --- YENİ AÇIK MAVİ GİRİŞ YAP BUTONU --- */
         .nav-login-btn { 
-            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            background: var(--logo-blue); /* Logodaki açık mavi */
             color: white; border: none; padding: 10px 20px; 
             border-radius: 15px; 
             cursor: pointer; font-weight: 600; transition: 0.4s;
-            box-shadow: 0 8px 15px rgba(11, 135, 147, 0.3);
+            /* Butona özel 3D gölge ve parlama efekti */
+            box-shadow: 0 8px 15px rgba(41, 182, 246, 0.4), inset 0 2px 5px rgba(255,255,255,0.5), inset 0 -2px 5px rgba(0,0,0,0.1);
             font-size: 14px; 
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
         }
-        .nav-login-btn:active { transform: scale(0.95); }
+        .nav-login-btn:active { 
+            transform: scale(0.95); 
+            box-shadow: 0 4px 10px rgba(41, 182, 246, 0.4), inset 0 2px 5px rgba(0,0,0,0.1); 
+        }
 
         /* --- MODAL --- */
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); backdrop-filter: blur(5px); z-index: 2000; justify-content: center; align-items: center; }
@@ -148,7 +166,6 @@
         /* --- 3D KARTLAR VE BÖLÜMLER --- */
         .section-box { padding: 80px 50px; text-align: center; background: var(--bg-gradient); }
         
-        /* Hizmetlerimiz için alternatif arka plan */
         .section-box.alt-bg { background: #ffffff; }
 
         .card { 
@@ -166,7 +183,6 @@
 </head>
 <body>
 
-    <!-- NAVBAR -->
     <nav class="navbar">
         <a href="index.html"><img src="sehbal-logo.png" class="site-logo"></a>
         <div class="nav-menu">
@@ -177,110 +193,17 @@
         <button class="nav-login-btn" onclick="document.getElementById('loginModal').style.display='flex'">Giriş Yap</button>
     </nav>
 
-    <!-- MODAL -->
     <div class="modal" id="loginModal">
         <div class="modal-content">
             <h2 style="color:var(--primary-color);">Panel Seçimi</h2>
-            <button class="nav-login-btn" style="width:100%; margin-top:20px;">Öğrenci Girişi</button>
-            <button class="nav-login-btn" style="width:100%; margin-top:10px; background:var(--secondary-color);">Öğretmen Girişi</button>
+            <button class="nav-login-btn" style="width:100%; margin-top:20px; background:var(--primary-color);">Öğrenci Girişi</button>
+            <button class="nav-login-btn" style="width:100%; margin-top:10px; background:var(--logo-blue);">Öğretmen Girişi</button>
             <p style="margin-top:20px; cursor:pointer;" onclick="document.getElementById('loginModal').style.display='none'">Kapat</p>
         </div>
     </div>
 
-    <!-- HABER SLIDER -->
     <div class="hero-slider">
         <div class="slider-inner">
             <div class="slide-card">
                 <a href="#birimlerimiz">
-                    <img src="https://images.unsplash.com/photo-1541339907198-e08756defe13?q=80&w=2070&auto=format&fit=crop" alt="Eğitim">
-                    <div class="slide-content">
-                        <h3>Şehbal'de Yeni Dönem Başlıyor!</h3>
-                        <p>Eğitim, spor ve gençlik faaliyetlerimizle dolu yeni bir döneme hazır olun.</p>
-                    </div>
-                </a>
-            </div>
-            <div class="slide-card">
-                <a href="#birimlerimiz">
-                    <img src="https://images.unsplash.com/photo-1517649763962-0c623066013b?q=80&w=2070&auto=format&fit=crop" alt="Spor">
-                    <div class="slide-content">
-                        <h3>Spor Takımlarımız Şampiyonluğa Koşuyor</h3>
-                        <p>Profesyonel antrenörlerimiz eşliğinde başarıdan başarıya koşan takımlarımıza katılın.</p>
-                    </div>
-                </a>
-            </div>
-            <div class="slide-card">
-                <a href="#birimlerimiz">
-                    <img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=2070&auto=format&fit=crop" alt="Gençlik">
-                    <div class="slide-content">
-                        <h3>Gençlik Kulüplerimizde Sosyalleşin</h3>
-                        <p>Farklı ilgi alanlarına yönelik kulüplerimizle yeni arkadaşlar edinin, yeteneklerinizi geliştirin.</p>
-                    </div>
-                </a>
-            </div>
-        </div>
-        <button class="slider-prev"><i class="fa-solid fa-chevron-left"></i></button>
-        <button class="slider-next"><i class="fa-solid fa-chevron-right"></i></button>
-    </div>
-
-    <!-- BİRİMLERİMİZ BÖLÜMÜ -->
-    <section id="birimlerimiz" class="section-box">
-        <h2 style="margin-bottom: 50px; font-size: 3rem;">Birimlerimiz</h2>
-        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px;">
-            <div class="card"><i class="fa-solid fa-book-open"></i><h3>Eğitim</h3><p>Akademik destek.</p></div>
-            <div class="card"><i class="fa-solid fa-dumbbell"></i><h3>Spor</h3><p>Profesyonel antrenman.</p></div>
-            <div class="card"><i class="fa-solid fa-users"></i><h3>Gençlik</h3><p>Sosyal kulüpler.</p></div>
-        </div>
-    </section>
-
-    <!-- HİZMETLERİMİZ BÖLÜMÜ -->
-    <section id="hizmetlerimiz" class="section-box alt-bg">
-        <h2 style="margin-bottom: 50px; font-size: 3rem;">Hizmetlerimiz</h2>
-        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px;">
-            <div class="card"><i class="fa-solid fa-compass"></i><h3>Rehberlik</h3><p>Birebir psikolojik ve akademik danışmanlık hizmetleri.</p></div>
-            <div class="card"><i class="fa-solid fa-palette"></i><h3>Sanat Atölyeleri</h3><p>Yaratıcılığınızı ve yeteneklerinizi keşfedeceğiniz faaliyetler.</p></div>
-            <div class="card"><i class="fa-solid fa-microphone"></i><h3>Seminerler</h3><p>Alanında uzman konuklarla ufuk açıcı eğitim söyleşileri.</p></div>
-        </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer class="footer">
-        <p>&copy; 2026 Şehbal - Modern Eğitim Platformu</p>
-    </footer>
-
-    <!-- SLIDER JAVASCRIPT -->
-    <script>
-        const sliderInner = document.querySelector('.slider-inner');
-        const slides = document.querySelectorAll('.slide-card');
-        const prevBtn = document.querySelector('.slider-prev');
-        const nextBtn = document.querySelector('.slider-next');
-
-        let currentIndex = 0;
-        let slideInterval;
-
-        function showSlide(index) {
-            if (index < 0) {
-                currentIndex = slides.length - 1;
-            } else if (index >= slides.length) {
-                currentIndex = 0;
-            } else {
-                currentIndex = index;
-            }
-            sliderInner.style.transform = `translateX(-${currentIndex * 100}%)`;
-        }
-
-        function nextSlide() { showSlide(currentIndex + 1); }
-        function prevSlide() { showSlide(currentIndex - 1); }
-
-        function startInterval() {
-            clearInterval(slideInterval); 
-            slideInterval = setInterval(nextSlide, 10000); 
-        }
-
-        nextBtn.addEventListener('click', () => { nextSlide(); startInterval(); });
-        prevBtn.addEventListener('click', () => { prevSlide(); startInterval(); });
-
-        startInterval();
-    </script>
-
-</body>
-</html>
+                    <img src="
