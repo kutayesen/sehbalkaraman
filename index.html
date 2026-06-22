@@ -27,7 +27,7 @@
             overflow-x: hidden; 
         }
 
-        /* --- NAVBAR (ONARILDI VE GÜÇLENDİRİLDİ) --- */
+        /* --- NAVBAR --- */
         .navbar { 
             background: linear-gradient(45deg, var(--primary-color), var(--secondary-color)); 
             padding: 10px 20px; 
@@ -44,7 +44,7 @@
             margin: 10px auto; 
         }
         
-        /* --- LOGO KAPSAYICISI (ONARILDI) --- */
+        /* --- LOGO KAPSAYICISI --- */
         .logo-wrapper {
             display: flex;
             align-items: center;
@@ -52,7 +52,7 @@
             background-color: #ffffff;
             border-radius: 30px;
             padding: 5px 15px;
-            height: 55px; /* Yükseklik sabitlendi, bozulma yapmaz */
+            height: 55px; 
             text-decoration: none;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
             transition: transform 0.3s ease;
@@ -66,9 +66,10 @@
             object-fit: contain;
         }
         
-        /* --- MENÜ LİNKLERİ --- */
+        /* --- MENÜ LİNKLERİ VE AÇILIR MENÜ (DROPDOWN) --- */
         .nav-menu {
             display: flex;
+            align-items: center;
             gap: 15px;
         }
         
@@ -81,8 +82,64 @@
             transition: all 0.3s ease;
             font-size: 14px; 
         }
-        .nav-menu a:hover { 
+        
+        .nav-menu > a:hover, .dropdown > a:hover { 
             background: rgba(255, 255, 255, 0.2); 
+        }
+
+        /* Dropdown Ana Kapsayıcı */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+            padding: 10px 0; /* Hover alanını genişletmek için */
+        }
+
+        /* Dropdown İçeriği (Görünmez Kutu) */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #ffffff;
+            min-width: 260px;
+            box-shadow: 0px 10px 25px rgba(0,0,0,0.2);
+            z-index: 1001;
+            border-radius: 15px;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%); /* Tam ortalayarak açılır */
+            padding: 10px 0;
+            overflow: hidden;
+        }
+
+        /* Menü Üzerine Gelince Açılma Efekti */
+        .dropdown:hover .dropdown-content {
+            display: flex;
+            flex-direction: column;
+            animation: fadeIn 0.3s ease forwards;
+        }
+
+        /* Dropdown İçindeki Linkler */
+        .dropdown-content a {
+            color: #333 !important;
+            padding: 12px 20px;
+            text-decoration: none;
+            display: block;
+            text-shadow: none !important;
+            border-radius: 0 !important;
+            font-weight: 500;
+            font-size: 13px !important;
+            transition: 0.3s;
+        }
+
+        .dropdown-content a:hover {
+            background-color: rgba(13, 74, 45, 0.08) !important;
+            color: var(--primary-color) !important;
+            padding-left: 25px; /* Hover olunca çok hafif sağa kayma efekti */
+        }
+
+        /* Açılma Animasyonu */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translate(-50%, -10px); }
+            to { opacity: 1; transform: translate(-50%, 0); }
         }
 
         /* --- GİRİŞ YAP BUTONU --- */
@@ -212,8 +269,15 @@
         .card:hover { transform: translateY(-15px); box-shadow: 20px 20px 60px rgba(0,0,0,0.1); }
         .card i { font-size: 40px; margin-bottom: 15px; background: -webkit-linear-gradient(var(--primary-color), var(--secondary-color)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
-        /* --- FOOTER --- */
-        .footer { background: linear-gradient(135deg, #0d4a2d, #08331e); color: white; padding: 40px; text-align: center; margin-top: 40px; }
+        /* --- SADE FOOTER (ESKİ HALİNE DÖNDÜ) --- */
+        .footer { 
+            background: linear-gradient(135deg, #0d4a2d, #08331e); 
+            color: white; 
+            padding: 40px; 
+            text-align: center; 
+            margin-top: 40px; 
+            box-shadow: 0 -10px 30px rgba(0,0,0,0.1);
+        }
     </style>
 </head>
 <body>
@@ -225,7 +289,20 @@
         
         <div class="nav-menu">
             <a href="index.html">Ana Sayfa</a>
-            <a href="#birimlerimiz">Birimlerimiz</a>
+            
+            <div class="dropdown">
+                <a href="#birimlerimiz" style="display: flex; align-items: center; gap: 5px;">
+                    Birimlerimiz <i class="fa-solid fa-chevron-down" style="font-size: 10px;"></i>
+                </a>
+               <div class="dropdown-content">
+    <a href="mercan-erkek.html">Mercan Şehbal Erkek Birimi</a>
+    <a href="mercan-kadin.html">Mercan Şehbal Kadın Birimi</a>
+    <a href="baylan-erkek.html">Baylan Şehbal Erkek Birimi</a>
+    <a href="baylan-kadin.html">Baylan Şehbal Kadın Birimi</a>
+    <a href="sen-sehbal.html">Şen Şehbal</a>
+</div>
+            </div>
+            
             <a href="#hizmetlerimiz">Hizmetlerimiz</a>
         </div>
 
