@@ -2,14 +2,158 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mercan Şehbal Erkek Birimi | Şehbal</title>
-    </head>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root { 
+            --primary-color: #0d4a2d; 
+            --secondary-color: #0b8793; 
+            --logo-blue: #29b6f6; 
+            --bg-gradient: linear-gradient(135deg, #fdfdfd, #eef3ef); 
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; scroll-behavior: smooth; }
+        body { background: #f0f2f0; overflow-x: hidden; }
+
+        /* --- NAVBAR (Ana Sayfa İle Aynı) --- */
+        .navbar { background: linear-gradient(45deg, var(--primary-color), var(--secondary-color)); padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 10px 25px rgba(0,0,0,0.3); position: sticky; top: 10px; z-index: 1000; border-radius: 50px; width: 95%; max-width: 1200px; margin: 10px auto; }
+        .logo-wrapper { display: flex; align-items: center; justify-content: center; background-color: #ffffff; border-radius: 30px; padding: 5px 15px; height: 55px; text-decoration: none; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); transition: transform 0.3s ease; }
+        .logo-wrapper:hover { transform: scale(1.05); }
+        .site-logo { height: 100%; object-fit: contain; }
+        
+        .nav-menu { display: flex; align-items: center; gap: 15px; }
+        .nav-menu a { text-decoration: none; color: #ffffff; font-weight: 600; padding: 8px 15px; border-radius: 12px; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); font-size: 14px; position: relative; overflow: hidden; }
+        .nav-menu a::after { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.4), transparent); transition: 0.5s; }
+        .nav-menu a:hover::after { left: 100%; }
+        .nav-menu > a:hover, .dropdown > a:hover { box-shadow: 0 4px 15px rgba(0,0,0,0.2), 0 0 20px rgba(255, 255, 255, 0.2); transform: translateY(-2px); }
+
+        .dropdown { position: relative; display: inline-block; padding: 10px 0; }
+        .dropdown-content { display: none; position: absolute; background-color: #ffffff; min-width: 260px; box-shadow: 0px 10px 25px rgba(0,0,0,0.2); z-index: 1001; border-radius: 15px; top: 100%; left: 50%; transform: translateX(-50%); padding: 10px 0; overflow: hidden; }
+        .dropdown:hover .dropdown-content { display: flex; flex-direction: column; animation: fadeIn 0.3s ease forwards; }
+        .dropdown-content a { color: #333 !important; padding: 12px 20px; text-decoration: none; display: block; font-weight: 500; font-size: 13px !important; }
+        .dropdown-content a:hover { background-color: rgba(13, 74, 45, 0.08) !important; color: var(--primary-color) !important; padding-left: 25px; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translate(-50%, -10px); } to { opacity: 1; transform: translate(-50%, 0); } }
+
+        .nav-login-btn { background: var(--logo-blue); color: white; border: none; padding: 10px 25px; border-radius: 50px; cursor: pointer; font-weight: 600; transition: all 0.4s ease; box-shadow: 0 4px 15px rgba(41, 182, 246, 0.4); font-size: 14px; position: relative; overflow: hidden; text-decoration: none; }
+        .nav-login-btn:hover { transform: scale(1.05); box-shadow: 0 8px 25px rgba(41, 182, 246, 0.6), 0 0 15px rgba(255, 255, 255, 0.5); color: white; }
+
+        /* --- ALT SAYFA ÖZEL TASARIMI --- */
+        .page-header {
+            width: 100%;
+            height: 50vh;
+            background: linear-gradient(rgba(13, 74, 45, 0.8), rgba(11, 135, 147, 0.8)), url('https://images.unsplash.com/photo-1526676037777-05a232554f77?q=80&w=2070&auto=format&fit=crop') center/cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .page-header h1 { font-size: 3.5rem; font-weight: 600; margin-bottom: 10px; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); }
+        .page-header p { font-size: 1.2rem; opacity: 0.9; max-width: 600px; }
+
+        .content-section { padding: 80px 20px; text-align: center; background: #ffffff; }
+        .content-wrapper { max-width: 1000px; margin: 0 auto; text-align: left; color: #444; line-height: 1.8; font-size: 1.1rem; }
+        .content-wrapper h2 { color: var(--primary-color); font-size: 2.2rem; margin-bottom: 20px; text-align: center; }
+
+        /* Faaliyet Kartları */
+        .activity-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 50px auto 0 auto;
+        }
+
+        .act-card {
+            background: var(--bg-gradient);
+            padding: 40px 25px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+            border: 1px solid rgba(0,0,0,0.03);
+        }
+
+        .act-card:hover { transform: translateY(-10px); }
+        .act-card i { font-size: 45px; color: var(--secondary-color); margin-bottom: 20px; }
+        .act-card h3 { color: var(--primary-color); font-size: 1.3rem; margin-bottom: 15px; }
+        .act-card p { font-size: 0.95rem; color: #666; line-height: 1.6; }
+
+        /* --- FOOTER --- */
+        .footer { background: linear-gradient(135deg, #0d4a2d, #08331e); color: white; padding: 40px; text-align: center; margin-top: 40px; box-shadow: 0 -10px 30px rgba(0,0,0,0.1); }
+    </style>
+</head>
 <body>
 
-    <div style="padding: 100px 20px; text-align: center;">
-        <h1>Mercan Şehbal Erkek Birimi</h1>
-        <p>Buraya birimin hakkında detaylı içerikleri, fotoğrafları veya eğitim takvimini ekleyebilirsin.</p>
-    </div>
+    <nav class="navbar">
+        <a href="index.html" class="logo-wrapper">
+            <img src="sehbal-logo.png" class="site-logo" alt="Şehbal Logo">
+        </a>
+        <div class="nav-menu">
+            <a href="index.html">Ana Sayfa</a>
+            <a href="index.html#hakkimizda">Hakkımızda</a>
+            <div class="dropdown">
+                <a href="#" style="display: flex; align-items: center; gap: 5px;">Birimlerimiz <i class="fa-solid fa-chevron-down"></i></a>
+               <div class="dropdown-content">
+                    <a href="mercan-erkek.html">Mercan Şehbal Erkek Birimi</a>
+                    <a href="mercan-kadin.html">Mercan Şehbal Kadın Birimi</a>
+                    <a href="baylan-erkek.html">Baylan Şehbal Erkek Birimi</a>
+                    <a href="baylan-kadin.html">Baylan Şehbal Kadın Birimi</a>
+                    <a href="sen-sehbal.html">Şen Şehbal</a>
+                </div>
+            </div>
+            <a href="index.html#hizmetlerimiz">Hizmetlerimiz</a>
+            <a href="index.html#iletisim">İletişim</a>
+        </div>
+        <a href="index.html" class="nav-login-btn">Giriş Yap</a>
+    </nav>
 
-    </body>
+    <header class="page-header">
+        <h1>Mercan Şehbal Erkek Birimi</h1>
+        <p>Geleceğin liderlerini, milli ve manevi değerlerle donatarak yarınlara hazırlıyoruz.</p>
+    </header>
+
+    <section class="content-section">
+        <div class="content-wrapper">
+            <h2>Biz Kimiz?</h2>
+            <p style="text-align: center; margin-bottom: 20px;">Mercan Şehbal Erkek Birimi, gençlerimizin enerjisini doğru yönlendirmeyi, onlara akademik başarılarının yanında ahlaki derinlik kazandırmayı hedefleyen özel bir eğitim ve spor merkezidir.</p>
+            <p style="text-align: center;">Ortaokul ve lise kademesindeki erkek öğrencilerimiz için hazırladığımız özel programlarla; özgüveni yüksek, takım çalışmasına yatkın, geleneklerine bağlı ve vizyon sahibi bireyler yetiştiriyoruz.</p>
+        </div>
+
+        <div class="activity-grid">
+            <div class="act-card">
+                <i class="fa-solid fa-book-quran"></i>
+                <h3>Değerler Eğitimi</h3>
+                <p>Karakter inşası, Kur'an-ı Kerim tilaveti, siyer ve temel dini bilgiler eğitimleriyle gençlerimizin manevi dünyasını zenginleştiriyoruz.</p>
+            </div>
+            <div class="act-card">
+                <i class="fa-solid fa-bullseye"></i>
+                <h3>Sportif Faaliyetler</h3>
+                <p>Geleneksel Türk Okçuluğu, masa tenisi, yüzme ve doğa yürüyüşleri gibi aktivitelerle fiziksel gelişimi destekliyoruz.</p>
+            </div>
+            <div class="act-card">
+                <i class="fa-solid fa-campground"></i>
+                <h3>Gençlik Kampları</h3>
+                <p>Yaz ve kış dönemlerinde düzenlediğimiz motivasyon kamplarıyla kardeşlik bağlarını güçlendiriyor, doğayla iç içe eğitim veriyoruz.</p>
+            </div>
+            <div class="act-card">
+                <i class="fa-solid fa-chalkboard-user"></i>
+                <h3>Akademik Takip</h3>
+                <p>Okul derslerine takviye etütler, deneme sınavları ve birebir rehberlik hizmetleriyle akademik başarıyı zirveye taşıyoruz.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>&copy; 2026 Şehbal Eğitim Gençlik ve Spor Kulübü - Tüm Hakları Saklıdır.</p>
+    </footer>
+
+</body>
 </html>
