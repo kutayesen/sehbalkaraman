@@ -14,64 +14,270 @@
             --bg-gradient: linear-gradient(135deg, #fdfdfd, #eef3ef); 
         }
         
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; scroll-behavior: smooth; }
-        body { background: #f0f2f0; overflow-x: hidden; }
-
-        /* NAVBAR */
-        .navbar { background: linear-gradient(45deg, var(--primary-color), var(--secondary-color)); padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 10px 25px rgba(0,0,0,0.3); position: sticky; top: 10px; z-index: 1000; border-radius: 50px; width: 95%; max-width: 1200px; margin: 10px auto; }
-        .logo-wrapper { display: flex; align-items: center; justify-content: center; background-color: #ffffff; border-radius: 30px; padding: 5px 15px; height: 55px; text-decoration: none; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); transition: transform 0.3s ease; }
-        .logo-wrapper:hover { transform: scale(1.05); }
-        .site-logo { height: 100%; object-fit: contain; }
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+            font-family: 'Poppins', sans-serif; 
+            scroll-behavior: smooth; 
+        }
         
-        .nav-menu { display: flex; align-items: center; gap: 15px; }
-        .nav-menu a { text-decoration: none; color: #ffffff; font-weight: 600; padding: 8px 15px; border-radius: 12px; transition: all 0.3s ease; font-size: 14px; }
-        .nav-menu > a:hover, .dropdown > a:hover { background: rgba(255, 255, 255, 0.2); }
+        body { 
+            background: #f0f2f0; 
+            overflow-x: hidden; 
+        }
 
-        .dropdown { position: relative; display: inline-block; padding: 10px 0; }
-        .dropdown-content { display: none; position: absolute; background-color: #ffffff; min-width: 260px; box-shadow: 0px 10px 25px rgba(0,0,0,0.2); z-index: 1001; border-radius: 15px; top: 100%; left: 50%; transform: translateX(-50%); padding: 10px 0; overflow: hidden; }
-        .dropdown:hover .dropdown-content { display: flex; flex-direction: column; animation: fadeIn 0.3s ease forwards; }
-        .dropdown-content a { color: #333 !important; padding: 12px 20px; text-decoration: none; display: block; text-shadow: none !important; border-radius: 0 !important; font-weight: 500; font-size: 13px !important; transition: 0.3s; }
-        .dropdown-content a:hover { background-color: rgba(13, 74, 45, 0.08) !important; color: var(--primary-color) !important; padding-left: 25px; }
+        /* --- NAVBAR --- */
+        .navbar { 
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color)); 
+            padding: 10px 20px; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            position: sticky; 
+            top: 10px; 
+            z-index: 1000; 
+            border-radius: 50px; 
+            width: 95%; 
+            max-width: 1200px;
+            margin: 10px auto; 
+        }
+        
+        .logo-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #ffffff;
+            border-radius: 30px;
+            padding: 5px 15px;
+            height: 55px; 
+            text-decoration: none;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
 
-        @keyframes fadeIn { from { opacity: 0; transform: translate(-50%, -10px); } to { opacity: 1; transform: translate(-50%, 0); } }
+        .logo-wrapper:hover {
+            transform: scale(1.05);
+        }
 
-        .nav-login-btn { background: var(--logo-blue); color: white; border: none; padding: 10px 20px; border-radius: 15px; cursor: pointer; font-weight: 600; transition: 0.3s; box-shadow: 0 4px 10px rgba(41, 182, 246, 0.4); font-size: 14px; }
-        .nav-login-btn:hover { transform: translateY(-2px); }
+        .site-logo { 
+            height: 100%; 
+            object-fit: contain;
+        }
+        
+        /* --- GÜNCELLENMİŞ MENÜ LİNKLERİ (IŞIK SÜZMESİ VE GÖLGE) --- */
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .nav-menu a { 
+            text-decoration: none; 
+            color: #ffffff; 
+            font-weight: 600; 
+            padding: 8px 15px; 
+            border-radius: 12px; 
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+            font-size: 14px; 
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Işık Süzmesi Efekti */
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: 0.5s;
+        }
 
-        /* MODAL */
+        .nav-menu a:hover::after {
+            left: 100%;
+        }
+
+        .nav-menu > a:hover, .dropdown > a:hover { 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2), 0 0 20px rgba(255, 255, 255, 0.2); 
+            transform: translateY(-2px);
+        }
+
+        /* --- DROPDOWN (AÇILIR MENÜ) --- */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+            padding: 10px 0;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #ffffff;
+            min-width: 260px;
+            box-shadow: 0px 10px 25px rgba(0,0,0,0.2);
+            z-index: 1001;
+            border-radius: 15px;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 10px 0;
+            overflow: hidden;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: flex;
+            flex-direction: column;
+            animation: fadeIn 0.3s ease forwards;
+        }
+
+        .dropdown-content a {
+            color: #333 !important;
+            padding: 12px 20px;
+            text-decoration: none;
+            display: block;
+            text-shadow: none !important;
+            border-radius: 0 !important;
+            font-weight: 500;
+            font-size: 13px !important;
+            transition: 0.3s;
+        }
+
+        .dropdown-content a:hover {
+            background-color: rgba(13, 74, 45, 0.08) !important;
+            color: var(--primary-color) !important;
+            padding-left: 25px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translate(-50%, -10px); }
+            to { opacity: 1; transform: translate(-50%, 0); }
+        }
+
+        /* --- GİRİŞ YAP BUTONU --- */
+        .nav-login-btn { 
+            background: var(--logo-blue); 
+            color: white; 
+            border: none; 
+            padding: 10px 25px; 
+            border-radius: 50px; 
+            cursor: pointer; 
+            font-weight: 600; 
+            transition: all 0.4s ease;
+            box-shadow: 0 4px 15px rgba(41, 182, 246, 0.4);
+            font-size: 14px; 
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-login-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(41, 182, 246, 0.6), 0 0 15px rgba(255, 255, 255, 0.5);
+        }
+
+        /* --- MODAL (GİRİŞ EKRANLARI) --- */
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); backdrop-filter: blur(5px); z-index: 2000; justify-content: center; align-items: center; }
         .modal-content { background: white; padding: 40px; border-radius: 30px; width: 100%; max-width: 420px; text-align: center; box-shadow: 0 20px 50px rgba(0,0,0,0.2); position: relative; }
+        
         .modal-close-btn { position: absolute; top: 20px; right: 25px; font-size: 20px; cursor: pointer; color: #888; transition: 0.3s; }
         .modal-close-btn:hover { color: #333; }
+
         .login-form-box { display: none; margin-top: 20px; text-align: left; }
         .login-form-box.active { display: block; animation: fadeInForm 0.4s ease; }
         
-        @keyframes fadeInForm { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeInForm {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
         .form-group { margin-bottom: 15px; }
         .form-group label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 5px; color: #444; }
         .form-group input { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 12px; font-size: 14px; outline: none; transition: 0.3s; }
         .form-group input:focus { border-color: var(--secondary-color); }
+
         .back-to-selection { display: block; margin-top: 15px; font-size: 13px; color: var(--secondary-color); text-align: center; cursor: pointer; text-decoration: underline; }
 
-        /* SLIDER */
-        .hero-slider { width: 100%; height: 60vh; overflow: hidden; position: relative; background: #000; margin-top: 20px; }
-        .slider-inner { display: flex; width: 100%; height: 100%; transition: transform 0.8s ease-in-out; }
-        .slide-card { min-width: 100%; height: 100%; position: relative; overflow: hidden; }
-        .slide-card a { text-decoration: none; display: block; width: 100%; height: 100%; }
-        .slide-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
-        .slide-card:hover img { transform: scale(1.05); }
-        .slide-content { position: absolute; bottom: 0; left: 0; width: 100%; padding: 40px; background: linear-gradient(to top, rgba(0,0,0,0.8), transparent); color: white; z-index: 1; }
+        /* --- HABER SLIDER --- */
+        .hero-slider {
+            width: 100%;
+            height: 60vh;
+            overflow: hidden;
+            position: relative;
+            background: #000; 
+            margin-top: 20px;
+        }
+
+        .slider-inner {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.8s ease-in-out; 
+        }
+
+        .slide-card {
+            min-width: 100%;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .slide-card a {
+            text-decoration: none;
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        .slide-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; 
+            transition: transform 0.5s ease;
+        }
+
+        .slide-card:hover img {
+            transform: scale(1.05); 
+        }
+
+        .slide-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 40px;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent); 
+            color: white;
+            z-index: 1;
+        }
+
         .slide-content h3 { font-size: 2rem; font-weight: 600; margin-bottom: 10px; }
         .slide-content p { font-size: 1rem; opacity: 0.9; }
-        .slider-prev, .slider-next { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.3); color: white; border: none; padding: 15px; border-radius: 50%; cursor: pointer; z-index: 2; transition: background 0.3s; }
+
+        .slider-prev, .slider-next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255,255,255,0.3);
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 2;
+            transition: background 0.3s;
+        }
+
         .slider-prev:hover, .slider-next:hover { background: rgba(255,255,255,0.5); }
         .slider-prev { left: 20px; }
         .slider-next { right: 20px; }
 
-        /* HABERLER */
+        /* --- HABERLER PORTALI --- */
         .news-section { padding: 80px 20px; text-align: center; background: #ffffff; }
         .news-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; max-width: 1200px; margin: 40px auto 0 auto; }
+        
         .news-card { background: #fff; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid rgba(0,0,0,0.03); transition: transform 0.3s, box-shadow: 0.3s; text-align: left; display: flex; flex-direction: column; }
         .news-card:hover { transform: translateY(-8px); box-shadow: 0 15px 40px rgba(0,0,0,0.1); }
         .news-card-img { width: 100%; height: 200px; object-fit: cover; }
@@ -82,16 +288,36 @@
         .news-readmore { font-size: 14px; color: var(--primary-color); font-weight: 600; text-decoration: none; margin-top: auto; display: inline-flex; align-items: center; gap: 5px; }
         .news-readmore:hover { color: var(--secondary-color); }
 
-        /* SECTIONS & KARTLAR */
+        /* --- 3D KARTLAR VE BÖLÜMLER --- */
         .section-box { padding: 80px 20px; text-align: center; background: var(--bg-gradient); }
         .section-box.alt-bg { background: #ffffff; }
-        .cards-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; }
-        .card { padding: 40px; background: white; border-radius: 25px; border: 1px solid rgba(0,0,0,0.05); box-shadow: 10px 10px 30px rgba(0,0,0,0.05); transition: 0.4s; }
+
+        .cards-container {
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .card { 
+            padding: 40px; background: white; border-radius: 25px; 
+            border: 1px solid rgba(0,0,0,0.05);
+            box-shadow: 10px 10px 30px rgba(0,0,0,0.05);
+            transition: 0.4s;
+        }
         .card:hover { transform: translateY(-15px); box-shadow: 20px 20px 60px rgba(0,0,0,0.1); }
         .card i { font-size: 40px; margin-bottom: 15px; background: -webkit-linear-gradient(var(--primary-color), var(--secondary-color)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
-        /* FOOTER */
-        .footer { background: linear-gradient(135deg, #0d4a2d, #08331e); color: white; padding: 40px; text-align: center; margin-top: 40px; box-shadow: 0 -10px 30px rgba(0,0,0,0.1); }
+        /* --- FOOTER --- */
+        .footer { 
+            background: linear-gradient(135deg, #0d4a2d, #08331e); 
+            color: white; 
+            padding: 40px; 
+            text-align: center; 
+            margin-top: 40px; 
+            box-shadow: 0 -10px 30px rgba(0,0,0,0.1);
+        }
     </style>
 </head>
 <body>
@@ -100,9 +326,11 @@
         <a href="index.html" class="logo-wrapper">
             <img src="sehbal-logo.png" class="site-logo" alt="Şehbal Logo">
         </a>
+        
         <div class="nav-menu">
             <a href="index.html">Ana Sayfa</a>
             <a href="#hakkimizda">Hakkımızda</a>
+            
             <div class="dropdown">
                 <a href="#birimlerimiz" style="display: flex; align-items: center; gap: 5px;">
                     Birimlerimiz <i class="fa-solid fa-chevron-down" style="font-size: 10px;"></i>
@@ -115,15 +343,18 @@
                     <a href="sen-sehbal.html">Şen Şehbal</a>
                 </div>
             </div>
+            
             <a href="#hizmetlerimiz">Hizmetlerimiz</a>
             <a href="#iletisim">İletişim</a>
         </div>
+
         <button class="nav-login-btn" onclick="openModal()">Giriş Yap</button>
     </nav>
 
     <div class="modal" id="loginModal">
         <div class="modal-content">
             <span class="modal-close-btn" onclick="closeModal()">&times;</span>
+            
             <div id="selectionBox">
                 <h2 style="color:var(--primary-color); margin-bottom: 10px;">Panel Seçimi</h2>
                 <p style="font-size: 14px; color: #666;">Lütfen giriş yapmak istediğiniz rolü seçin.</p>
@@ -135,8 +366,14 @@
             <div id="studentFormBox" class="login-form-box">
                 <h3 style="color:var(--primary-color); margin-bottom: 15px; text-align: center;">Öğrenci Girişi</h3>
                 <form onsubmit="handleLogin(event, 'Öğrenci')">
-                    <div class="form-group"><label>Öğrenci / Sporcu No</label><input type="text" placeholder="Numaranızı girin" required></div>
-                    <div class="form-group"><label>Şifre</label><input type="password" placeholder="••••••••" required></div>
+                    <div class="form-group">
+                        <label>Öğrenci / Sporcu No</label>
+                        <input type="text" placeholder="Numaranızı girin" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Şifre</label>
+                        <input type="password" placeholder="••••••••" required>
+                    </div>
                     <button type="submit" class="nav-login-btn" style="width: 100%; background: var(--primary-color);">Giriş Yap</button>
                 </form>
                 <span class="back-to-selection" onclick="showSelection()">Geri Dön</span>
@@ -145,8 +382,14 @@
             <div id="parentFormBox" class="login-form-box">
                 <h3 style="color:var(--secondary-color); margin-bottom: 15px; text-align: center;">Veli Giriş Sistemi</h3>
                 <form onsubmit="handleLogin(event, 'Veli')">
-                    <div class="form-group"><label>Öğrenci T.C. Kimlik Numarası</label><input type="text" placeholder="Öğrencinin T.C. Kimlik nosu" required></div>
-                    <div class="form-group"><label>Veli Giriş Şifresi</label><input type="password" placeholder="••••••••" required></div>
+                    <div class="form-group">
+                        <label>Öğrenci T.C. Kimlik Numarası</label>
+                        <input type="text" placeholder="Öğrencinin T.C. Kimlik nosu" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Veli Giriş Şifresi</label>
+                        <input type="password" placeholder="••••••••" required>
+                    </div>
                     <button type="submit" class="nav-login-btn" style="width: 100%; background: var(--secondary-color);">Veli Girişi Yap</button>
                 </form>
                 <span class="back-to-selection" onclick="showSelection()">Geri Dön</span>
@@ -155,20 +398,51 @@
             <div id="teacherFormBox" class="login-form-box">
                 <h3 style="color:var(--logo-blue); margin-bottom: 15px; text-align: center;">Öğretmen Girişi</h3>
                 <form onsubmit="handleLogin(event, 'Öğretmen')">
-                    <div class="form-group"><label>E-Posta Adresi / Kullanıcı Adı</label><input type="text" placeholder="Kullanıcı bilgisi" required></div>
-                    <div class="form-group"><label>Şifre</label><input type="password" placeholder="••••••••" required></div>
+                    <div class="form-group">
+                        <label>E-Posta Adresi / Kullanıcı Adı</label>
+                        <input type="text" placeholder="Kullanıcı bilgisi" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Şifre</label>
+                        <input type="password" placeholder="••••••••" required>
+                    </div>
                     <button type="submit" class="nav-login-btn" style="width: 100%; background: var(--logo-blue);">Giriş Yap</button>
                 </form>
                 <span class="back-to-selection" onclick="showSelection()">Geri Dön</span>
             </div>
+
         </div>
     </div>
 
     <div class="hero-slider">
         <div class="slider-inner">
-            <div class="slide-card"><a href="#birimlerimiz"><img src="https://images.unsplash.com/photo-1541339907198-e08756defe13?q=80&w=2070&auto=format&fit=crop" alt="Eğitim"><div class="slide-content"><h3>Şehbal'de Yeni Dönem Başlıyor!</h3><p>Eğitim, spor ve gençlik faaliyetlerimizle dolu yeni bir döneme hazır olun.</p></div></a></div>
-            <div class="slide-card"><a href="#birimlerimiz"><img src="https://images.unsplash.com/photo-1517649763962-0c623066013b?q=80&w=2070&auto=format&fit=crop" alt="Spor"><div class="slide-content"><h3>Spor Takımlarımız Şampiyonluğa Koşuyor</h3><p>Profesyonel antrenörlerimiz eşliğinde başarıdan başarıya koşan takımlarımıza katılın.</p></div></a></div>
-            <div class="slide-card"><a href="#birimlerimiz"><img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=2070&auto=format&fit=crop" alt="Gençlik"><div class="slide-content"><h3>Gençlik Kulüplerimizde Sosyalleşin</h3><p>Farklı ilgi alanlarına yönelik kulüplerimizle yeni arkadaşlar edinin, yeteneklerinizi geliştirin.</p></div></a></div>
+            <div class="slide-card">
+                <a href="#birimlerimiz">
+                    <img src="https://images.unsplash.com/photo-1541339907198-e08756defe13?q=80&w=2070&auto=format&fit=crop" alt="Eğitim">
+                    <div class="slide-content">
+                        <h3>Şehbal'de Yeni Dönem Başlıyor!</h3>
+                        <p>Eğitim, spor ve gençlik faaliyetlerimizle dolu yeni bir döneme hazır olun.</p>
+                    </div>
+                </a>
+            </div>
+            <div class="slide-card">
+                <a href="#birimlerimiz">
+                    <img src="https://images.unsplash.com/photo-1517649763962-0c623066013b?q=80&w=2070&auto=format&fit=crop" alt="Spor">
+                    <div class="slide-content">
+                        <h3>Spor Takımlarımız Şampiyonluğa Koşuyor</h3>
+                        <p>Profesyonel antrenörlerimiz eşliğinde başarıdan başarıya koşan takımlarımıza katılın.</p>
+                    </div>
+                </a>
+            </div>
+            <div class="slide-card">
+                <a href="#birimlerimiz">
+                    <img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=2070&auto=format&fit=crop" alt="Gençlik">
+                    <div class="slide-content">
+                        <h3>Gençlik Kulüplerimizde Sosyalleşin</h3>
+                        <p>Farklı ilgi alanlarına yönelik kulüplerimizle yeni arkadaşlar edinin, yeteneklerinizi geliştirin.</p>
+                    </div>
+                </a>
+            </div>
         </div>
         <button class="slider-prev"><i class="fa-solid fa-chevron-left"></i></button>
         <button class="slider-next"><i class="fa-solid fa-chevron-right"></i></button>
@@ -177,10 +451,35 @@
     <section class="news-section">
         <h2 style="font-size: 3rem; color: var(--primary-color);">Kulüpten Haberler</h2>
         <p style="color: #666; margin-top: 10px;">Şehbal bünyesindeki en son güncellemeler, başarılar ve etkinlik duyuruları</p>
+        
         <div class="news-grid">
-            <div class="news-card"><img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=600&auto=format&fit=crop" class="news-card-img" alt="Haber"><div class="news-card-body"><span class="news-date">24 Haziran 2026</span><h4>Yaz Okulu Kayıtlarımız Tüm Hızıyla Başladı!</h4><p>Karakter eğitimi, spor faaliyetleri ve sosyal kulüplerle dolu Şehbal Yaz Okulu dönem kayıtları aktif hale getirilmiştir.</p><a href="#" class="news-readmore">Devamını Oku <i class="fa-solid fa-arrow-right"></i></a></div></div>
-            <div class="news-card"><img src="https://images.unsplash.com/photo-1517649763962-0c623066013b?q=80&w=600&auto=format&fit=crop" class="news-card-img" alt="Haber"><div class="news-card-body"><span class="news-date">18 Haziran 2026</span><h4>Geleneksel Okçuluk Takımımızdan Büyük Başarı</h4><p>Birimlerimiz arası düzenlenen turnuvalarda sporcularımız hedefleri tam on ikiden vurarak kulübümüzü gururlandırdı.</p><a href="#" class="news-readmore">Devamını Oku <i class="fa-solid fa-arrow-right"></i></a></div></div>
-            <div class="news-card"><img src="https://images.unsplash.com/photo-1541339907198-e08756defe13?q=80&w=600&auto=format&fit=crop" class="news-card-img" alt="Haber"><div class="news-card-body"><span class="news-date">10 Haziran 2026</span><h4>Velilerimizle İstişare ve Rehberlik Toplantısı</h4><p>Öğrencilerimizin akademik gelişimlerini ve spor performans grafiklerini değerlendirdiğimiz verimli bir seminer gerçekleştirdik.</p><a href="#" class="news-readmore">Devamını Oku <i class="fa-solid fa-arrow-right"></i></a></div></div>
+            <div class="news-card">
+                <img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=600&auto=format&fit=crop" class="news-card-img" alt="Haber">
+                <div class="news-card-body">
+                    <span class="news-date">24 Haziran 2026</span>
+                    <h4>Yaz Okulu Kayıtlarımız Tüm Hızıyla Başladı!</h4>
+                    <p>Karakter eğitimi, spor faaliyetleri ve sosyal kulüplerle dolu Şehbal Yaz Okulu dönem kayıtları aktif hale getirilmiştir.</p>
+                    <a href="#" class="news-readmore">Devamını Oku <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="news-card">
+                <img src="https://images.unsplash.com/photo-1517649763962-0c623066013b?q=80&w=600&auto=format&fit=crop" class="news-card-img" alt="Haber">
+                <div class="news-card-body">
+                    <span class="news-date">18 Haziran 2026</span>
+                    <h4>Geleneksel Okçuluk Takımımızdan Büyük Başarı</h4>
+                    <p>Birimlerimiz arası düzenlenen turnuvalarda sporcularımız hedefleri tam on ikiden vurarak kulübümüzü gururlandırdı.</p>
+                    <a href="#" class="news-readmore">Devamını Oku <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="news-card">
+                <img src="https://images.unsplash.com/photo-1541339907198-e08756defe13?q=80&w=600&auto=format&fit=crop" class="news-card-img" alt="Haber">
+                <div class="news-card-body">
+                    <span class="news-date">10 Haziran 2026</span>
+                    <h4>Velilerimizle İstişare ve Rehberlik Toplantısı</h4>
+                    <p>Öğrencilerimizin akademik gelişimlerini ve spor performans grafiklerini değerlendirdiğimiz verimli bir seminer gerçekleştirdik.</p>
+                    <a href="#" class="news-readmore">Devamını Oku <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -212,9 +511,21 @@
     <section id="iletisim" class="section-box alt-bg">
         <h2 style="margin-bottom: 50px; font-size: 3rem; color: var(--primary-color);">İletişim</h2>
         <div class="cards-container" style="max-width: 900px;">
-            <div class="card" style="padding: 30px;"><i class="fa-solid fa-location-dot" style="font-size: 30px; margin-bottom: 10px;"></i><h3 style="margin-bottom: 10px;">Adresimiz</h3><p style="font-size: 14px; color: #666;">Karaman Merkez, Karaman, Türkiye</p></div>
-            <div class="card" style="padding: 30px;"><i class="fa-solid fa-phone" style="font-size: 30px; margin-bottom: 10px;"></i><h3 style="margin-bottom: 10px;">Telefon</h3><p style="font-size: 14px; color: #666;">+90 555 123 45 67</p></div>
-            <div class="card" style="padding: 30px;"><i class="fa-solid fa-envelope" style="font-size: 30px; margin-bottom: 10px;"></i><h3 style="margin-bottom: 10px;">E-Posta</h3><p style="font-size: 14px; color: #666;">bilgi@sehbal.org.tr</p></div>
+            <div class="card" style="padding: 30px;">
+                <i class="fa-solid fa-location-dot" style="font-size: 30px; margin-bottom: 10px;"></i>
+                <h3 style="margin-bottom: 10px;">Adresimiz</h3>
+                <p style="font-size: 14px; color: #666;">Karaman Merkez, Karaman, Türkiye</p>
+            </div>
+            <div class="card" style="padding: 30px;">
+                <i class="fa-solid fa-phone" style="font-size: 30px; margin-bottom: 10px;"></i>
+                <h3 style="margin-bottom: 10px;">Telefon</h3>
+                <p style="font-size: 14px; color: #666;">+90 555 123 45 67</p>
+            </div>
+            <div class="card" style="padding: 30px;">
+                <i class="fa-solid fa-envelope" style="font-size: 30px; margin-bottom: 10px;"></i>
+                <h3 style="margin-bottom: 10px;">E-Posta</h3>
+                <p style="font-size: 14px; color: #666;">bilgi@sehbal.org.tr</p>
+            </div>
         </div>
     </section>
 
@@ -223,10 +534,12 @@
     </footer>
 
     <script>
+        // SLIDER FONKSİYONLARI
         const sliderInner = document.querySelector('.slider-inner');
         const slides = document.querySelectorAll('.slide-card');
         const prevBtn = document.querySelector('.slider-prev');
         const nextBtn = document.querySelector('.slider-next');
+
         let currentIndex = 0;
         let slideInterval;
 
@@ -239,38 +552,6 @@
 
         function nextSlide() { showSlide(currentIndex + 1); }
         function prevSlide() { showSlide(currentIndex - 1); }
-        function startInterval() { clearInterval(slideInterval); slideInterval = setInterval(nextSlide, 10000); }
 
-        nextBtn.addEventListener('click', () => { nextSlide(); startInterval(); });
-        prevBtn.addEventListener('click', () => { prevSlide(); startInterval(); });
-        startInterval();
-
-        function openModal() { document.getElementById('loginModal').style.display = 'flex'; showSelection(); }
-        function closeModal() { document.getElementById('loginModal').style.display = 'none'; }
-        
-        function showForm(role) {
-            document.getElementById('selectionBox').style.display = 'none';
-            document.getElementById('studentFormBox').classList.remove('active');
-            document.getElementById('parentFormBox').classList.remove('active');
-            document.getElementById('teacherFormBox').classList.remove('active');
-
-            if(role === 'student') document.getElementById('studentFormBox').classList.add('active');
-            else if(role === 'parent') document.getElementById('parentFormBox').classList.add('active');
-            else if(role === 'teacher') document.getElementById('teacherFormBox').classList.add('active');
-        }
-
-        function showSelection() {
-            document.getElementById('selectionBox').style.display = 'block';
-            document.getElementById('studentFormBox').classList.remove('active');
-            document.getElementById('parentFormBox').classList.remove('active');
-            document.getElementById('teacherFormBox').classList.remove('active');
-        }
-
-        function handleLogin(event, role) {
-            event.preventDefault();
-            alert(role + " girişi başarılı! Şehbal Bilgi Sistemine yönlendiriliyorsunuz...");
-            window.location.href = "panel.html"; 
-        }
-    </script>
-</body>
-</html>
+        function startInterval() {
+            clearInterval(slideInterval);
